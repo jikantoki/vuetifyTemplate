@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
+import MetaFunction from '@/functions/metaFunctions'
 
 /**
  * ここに登録されたページしか使えない
@@ -39,3 +40,11 @@ const router = createRouter({
 })
 
 export default router
+
+router.afterEach((to) => {
+  MetaFunction.setTitle(to.meta.title)
+  if (to.meta.description) {
+    MetaFunction.updateMeta('og:description', to.meta.description)
+    MetaFunction.updateMeta('description', to.meta.description)
+  }
+})
