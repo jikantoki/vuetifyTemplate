@@ -4,6 +4,10 @@ Vuetifyを簡単にインストールしてすぐ使うためのテンプレー�
 
 - NOLICENSED ご自由にお使いください
 
+## 前提
+
+Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
+
 ## INCLUDED
 
 - Vue CLI Service
@@ -21,7 +25,7 @@ VSCodeでの利用を推奨
 ## Setup
 
 ```shell
-git clone this!
+git clone git@github.com:jikantoki/vuetifyTemplate.git
 echo 'これだけでセットアップ完了！'
 echo 'Vercelとかでデプロイしたらそのまま動く'
 ```
