@@ -2,7 +2,7 @@
   "name": "vuetify-template",
   "version": "1.0.0",
   "private": true,
-  "description": "簡単にタスクを管理",
+  "description": "Vuetifyを簡単インストール",
   "author": {
     "name": "jikantoki",
     "email": "info@enoki.xyz",
@@ -16,7 +16,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/jikantoki/tasc.git"
+    "url": "git+ssh://git@github.com:jikantoki/vuetifyTemplate.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
