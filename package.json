@@ -29,6 +29,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-pug": "^1.2.5",
+    "prettier": "^3.0.3",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
     "roboto-fontface": "*",
@@ -37,7 +38,8 @@
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuetify": "^3.0.0-beta.0",
-    "webfontloader": "^1.0.0"
+    "webfontloader": "^1.0.0",
+    "webpack": "^5.88.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
