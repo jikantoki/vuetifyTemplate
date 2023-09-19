@@ -1,24 +1,55 @@
 {
-  "name": "vuetifytemplate",
-  "version": "0.1.0",
+  "name": "vuetify-template",
+  "version": "1.0.0",
   "private": true,
+  "description": "簡単にタスクを管理",
+  "author": {
+    "name": "jikantoki",
+    "email": "info@enoki.xyz",
+    "url": "https://github.com/jikantoki"
+  },
+  "homepage": "https://github.com/jikantoki/vuetifyTemplate",
+  "bugs": {
+    "url": "https://github.com/jikantoki/vuetifyTemplate/issues",
+    "email": "info@enoki.xyz"
+  },
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jikantoki/tasc.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@mdi/font": "5.9.55",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-pug": "^1.2.5",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
+    "roboto-fontface": "*",
+    "sass": "^1.67.0",
+    "sass-loader": "^13.3.2",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuetify": "^3.0.0-beta.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint": "^8.0.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   },
   "eslintConfig": {
     "root": true,
