@@ -15,5 +15,13 @@
       "sizes": "192x192",
       "type": "image/png"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "img/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "description": "簡単にVuetifyを使用するチュートリアルパッケージ"
 }
