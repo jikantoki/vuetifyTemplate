@@ -47,13 +47,13 @@ yarn serve
 
 ### 設定方法
 
-| 項目     | 設定箇所      |
-| -------- | ------------- |
-| アプリ名 | /package.json |
-| フォント | /src/app.vue  |
-| ナビゲーション | /src/items/itemNavigationList.js |
-| ページ毎のメタ情報 | /src/router/router.js |
-| 404ページ | /src/views/error/errorNotFound.vue |
+| 項目               | 設定箇所                           |
+| ------------------ | ---------------------------------- |
+| アプリ名           | /package.json                      |
+| フォント           | /src/app.vue                       |
+| ナビゲーション     | /src/items/itemNavigationList.js   |
+| ページ毎のメタ情報 | /src/router/router.js              |
+| 404ページ          | /src/views/error/errorNotFound.vue |
 
 ### Compiles and minifies for production
 
