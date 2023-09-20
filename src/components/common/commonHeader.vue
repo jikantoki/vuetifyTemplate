@@ -6,14 +6,16 @@ v-app-bar
   v-app-bar-nav-icon(v-if="isRoot" @click="toggleDrawer()")
   v-btn(v-if="!isRoot" icon="mdi-keyboard-backspace" @click="back()")
   v-app-bar-title {{ $route.meta.title }}
-v-navigation-drawer(v-model="drawer" fixed temporary)
+v-navigation-drawer.pa-0(v-model="drawer" fixed temporary)
   v-list(nav dense)
     v-item-group(v-model="group" active-class="deep-purple-text text--accent-4")
-      v-list-item(v-for="navigationItem in NavigationList")
-        li.nav.ripple(v-ripple @click="a(navigationItem.url)")
-          p {{ navigationItem.name }}
-      v-list-item-action
-        v-switch(v-model="isDarkTheme")
+      v-list-item.pa-4(link v-for="navigationItem in NavigationList" @click="a(navigationItem.url)")
+          p.nav {{ navigationItem.name }}
+      v-divider
+      .themeSwitch.pa-4
+        div Dark Theme
+        v-list-item-action
+          v-switch(v-model="isDarkTheme")
 </template>
 
 <script>
@@ -132,17 +134,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-li.nav {
+.nav {
   width: 100%;
-  height: 3em;
+  height: 2em;
   cursor: pointer;
   display: flex;
   align-items: center;
-  &:hover::after {
-    content: '>';
-    margin-left: 1em;
-    font-weight: bold;
-  }
 }
 .text-none {
   font-weight: normal;
@@ -157,5 +154,8 @@ li.nav {
       0px 4px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)),
       0px 1px 10px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12));
   }
+}
+button {
+  margin: 0.2em !important;
 }
 </style>

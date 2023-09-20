@@ -8,6 +8,10 @@ export default [
     url: '/about'
   },
   {
+    name: 'Vuetify',
+    url: '/vuetify'
+  },
+  {
     name: '404',
     url: '/hf8wehegiaohiedwhie'
   },

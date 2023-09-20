@@ -112,15 +112,27 @@ $body-font-family: $font;
   }
   .text-h1 {
     font-size: 5em !important;
+    @include mq('smartPhone') {
+      font-size: 4em !important;
+    }
   }
   .text-h2 {
     font-size: 4em !important;
+    @include mq('smartPhone') {
+      font-size: 3em !important;
+    }
   }
   .text-h3 {
     font-size: 3em !important;
+    @include mq('smartPhone') {
+      font-size: 2.5em !important;
+    }
   }
   .text-h4 {
     font-size: 2.5em !important;
+    @include mq('smartPhone') {
+      font-size: 2.2em !important;
+    }
   }
   .text-h5 {
     font-size: 2em !important;
@@ -137,9 +149,9 @@ $body-font-family: $font;
     font-family: $font !important;
     margin-top: 0.2em;
     margin-bottom: 0.2em;
-    @include mq('smartPhone') {
-      font-size: 50%;
-    }
+  }
+  button {
+    margin: 0.5em;
   }
 }
 </style>
