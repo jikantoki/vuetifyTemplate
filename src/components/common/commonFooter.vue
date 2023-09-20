@@ -1,9 +1,13 @@
 <template lang="pug">
-.copyRight &copy; 2019 - {{ new Date().getFullYear() }} エノキ電気
+.center
+  .copyRight &copy; 2019 - {{ new Date().getFullYear() }} エノキ電気
 </template>
 
 <script>
-export default {}
+import mixins from '@/functions/mixins'
+export default {
+  mixins: [mixins]
+}
 </script>
 
 <style lang="scss" scoped></style>

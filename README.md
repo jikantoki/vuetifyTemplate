@@ -43,6 +43,13 @@ yarn install
 yarn serve
 ```
 
+### 設定方法
+
+| 項目     | 設定箇所      |
+| -------- | ------------- |
+| アプリ名 | /package.json |
+| フォント | /src/app.vue  |
+
 ### Compiles and minifies for production
 
 ```shell

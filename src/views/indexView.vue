@@ -1,14 +1,20 @@
 <template lang="pug">
-.center
-  .text-h1 Hello
-  .text-h6 Vuetifyを簡単に最速に構築できるサンプル
-  v-btn() Hello Vuetify!
+.text-h1 VueTemp {{ PackageJson.version }}
+.text-h6 Vuetifyを簡単に最速に構築できるサンプル
+v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
 </template>
 
-<style lang="scss" scoped>
-.center {
-  //text-align: center;
-  width: 70%;
-  margin: auto;
+<script>
+import PackageJson from '/package.json'
+import mixins from '@/functions/mixins'
+export default {
+  mixins: [mixins],
+  data() {
+    return {
+      PackageJson: PackageJson
+    }
+  }
 }
-</style>
+</script>
+
+<style lang="scss" scoped></style>

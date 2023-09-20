@@ -8,12 +8,12 @@ v-app-bar
   v-app-bar-title {{ $route.meta.title }}
 v-navigation-drawer(v-model="drawer" fixed temporary)
   v-list(nav dense)
-    v-list-item-group(v-model="group" active-class="deep-purple-text text--accent-4")
+    v-item-group(v-model="group" active-class="deep-purple-text text--accent-4")
       v-list-item(v-for="navigationItem in NavigationList")
-        li.nav(@click="a(navigationItem.url)")
+        li.nav.ripple(v-ripple @click="a(navigationItem.url)")
           p {{ navigationItem.name }}
-      v-list-item
-        //v-btn(@click="changeTheme()") Click!
+      v-list-item-action
+        v-switch(v-model="isDarkTheme")
 </template>
 
 <script>
@@ -21,9 +21,10 @@ import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
 import NavigationList from '@/items/itemNavigationList'
 import router, { currentMeta } from '@/router/router'
-import { useTheme } from 'vuetify'
+import mixins from '@/functions/mixins'
 export default {
   components: {},
+  mixins: [mixins],
   data() {
     return {
       PackageJson: PackageJson,
@@ -31,10 +32,10 @@ export default {
       Functions: Functions,
       currentMeta: currentMeta,
       drawer: false,
-      group: null,
+      group: 1,
       isRoot: false,
       theme: 'light',
-      useTheme: useTheme()
+      isDarkTheme: false
     }
   },
   watch: {
@@ -45,6 +46,14 @@ export default {
       } else {
         this.isRoot = false
       }
+    },
+    isDarkTheme(isDark) {
+      if (this.$vuetify.theme.global.name === 'light' && isDark) {
+        this.$vuetify.theme.global.name = 'dark'
+      }
+      if (this.$vuetify.theme.global.name === 'dark' && !isDark) {
+        this.$vuetify.theme.global.name = 'light'
+      }
     }
   },
   mounted() {
@@ -53,6 +62,12 @@ export default {
       this.isRoot = true
     } else {
       this.isRoot = false
+    }
+    if (this.$vuetify.theme.global.name === 'light' && this.isDarkTheme) {
+      this.$vuetify.theme.global.name = 'dark'
+    }
+    if (this.$vuetify.theme.global.name === 'dark' && !isDarkthe) {
+      this.$vuetify.theme.global.name = 'light'
     }
   },
   methods: {
@@ -63,20 +78,13 @@ export default {
         this.drawer = false
       }
     },
-    /**
-     * <p>aタグと同じ動きをするし、pjaxになる</p>
-     * <p>外部URLの場合、新しいタブで開く</p>
-     * @param {string} url 転送したいURL（ルートからのパス）
-     * @returns {int} 内部リンクなら0、外部ドメインなら1
-     */
-    a(url) {
-      if (url.slice(0, 4) === 'http') {
-        window.open(url, '_blank')
-        return 1
+    toggleTheme() {
+      if (this.isDarkTheme) {
+        this.$vuetify.theme.global.name = 'light'
+        this.isDarkTheme = false
       } else {
-        router.push(url)
-        if (this.drawer) this.drawer = false
-        return 0
+        this.$vuetify.theme.global.name = 'dark'
+        this.isDarkTheme = true
       }
     },
     /**
@@ -141,5 +149,13 @@ li.nav {
   font-size: 1.3em;
   padding-left: 0.5em;
   padding-right: 0.5em;
+}
+.ripple {
+  &:hover {
+    box-shadow:
+      0px 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)),
+      0px 4px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)),
+      0px 1px 10px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12));
+  }
 }
 </style>

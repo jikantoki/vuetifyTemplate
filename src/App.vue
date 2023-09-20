@@ -3,7 +3,8 @@ v-app(ontouchstart="")
   header
     common-header
   v-main
-    router-view
+    .center
+      router-view
   v-footer
     common-footer
 </template>
@@ -13,6 +14,7 @@ import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
 import commonHeader from '@/components/common/commonHeader.vue'
 import commonFooter from '@/components/common/commonFooter.vue'
+import mixins from '@/functions/mixins'
 
 export default {
   /**
@@ -26,6 +28,7 @@ export default {
     commonHeader: commonHeader,
     commonFooter: commonFooter
   },
+  mixins: [mixins],
   /**
    * このファイル内で使うthisで始まる変数
    */
@@ -56,17 +59,36 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$breakpoints: (
+  'smartPhone': 'screen and (max-width:900px)',
+  'tablet': 'screen and (max-width:1200px)'
+) !default;
+
+/* フォント設定 */
+$font: 'Zen Maru Gothic', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+/* フォント設定ここまで */
+
+@mixin mq($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+$body-font-family: $font;
+:root {
+  font-size: 16px;
+}
 * {
   user-select: none;
   list-style: none;
   transition: all 0.14s;
+  font-family: $font !important;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $font !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   nav {
     padding: 30px;
@@ -76,6 +98,47 @@ export default {
       &.router-link-exact-active {
         color: #42b983;
       }
+    }
+  }
+  .center {
+    width: 60%;
+    margin: auto;
+    @include mq('tablet') {
+      width: 80%;
+    }
+    @include mq('smartPhone') {
+      width: 100%;
+    }
+  }
+  .text-h1 {
+    font-size: 5em !important;
+  }
+  .text-h2 {
+    font-size: 4em !important;
+  }
+  .text-h3 {
+    font-size: 3em !important;
+  }
+  .text-h4 {
+    font-size: 2.5em !important;
+  }
+  .text-h5 {
+    font-size: 2em !important;
+  }
+  .text-h6 {
+    font-size: 1.5em !important;
+  }
+  .text-h1,
+  .text-h2,
+  .text-h3,
+  .text-h4,
+  .text-h5,
+  .text-h6 {
+    font-family: $font !important;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    @include mq('smartPhone') {
+      font-size: 50%;
     }
   }
 }
