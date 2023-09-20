@@ -8,13 +8,21 @@ import MetaFunction from '@/functions/metaFunctions'
 const routes = [
   {
     path: '/',
-    component: HomeView,
+    component: () => import('@/views/indexView.vue'),
     meta: {
       title: 'Top',
       /**
        * 配列の最初のページのみdescriptionが必須
        */
       description: 'Vuetifyを簡単に使えるテンプレート'
+    }
+  },
+  {
+    path: '/vuetify',
+    component: HomeView,
+    meta: {
+      title: 'Old Hello',
+      description: 'Vuetify Sample Page'
     }
   },
   {
@@ -26,11 +34,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+      import(/* webpackChunkName: "about" */ '@/views/AboutView.vue')
   },
   {
     path: '/:catchAll(.*)', //404
-    component: () => import('../views/error/errorNotFound.vue'),
+    component: () => import('@/views/error/errorNotFound.vue'),
     meta: {
       title: '404 Not Found'
     }
@@ -42,7 +50,12 @@ const router = createRouter({
   routes
 })
 
+/**
+ * 現在のページのメタ情報を出している…が、リアルタイムな反映はされない
+ */
+let currentMeta
 export default router
+export { currentMeta }
 
 router.afterEach((to) => {
   MetaFunction.setTitle(to.meta.title)
@@ -53,4 +66,6 @@ router.afterEach((to) => {
     MetaFunction.updateMeta('og:description', routes[0].meta.description)
     MetaFunction.updateMeta('description', routes[0].meta.description)
   }
+  currentMeta = to.meta
+  console.log('page moved')
 })

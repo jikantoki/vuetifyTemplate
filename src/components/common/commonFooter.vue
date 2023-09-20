@@ -1,5 +1,5 @@
 <template lang="pug">
-.copyRight &copy; 2023 - {{ new Date().getFullYear() }} エノキ電気
+.copyRight &copy; 2019 - {{ new Date().getFullYear() }} エノキ電気
 </template>
 
 <script>

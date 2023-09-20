@@ -15,5 +15,21 @@ export default {
     } else {
       return string
     }
+  },
+  /**
+   * パスがルートを指していたらT、そうでなければF
+   * @param {string} path 検証したいパス
+   * @returns 説明の通り
+   */
+  isRoot: (path) => {
+    switch (path) {
+      case '':
+      case '/':
+      case 'index':
+      case 'index.html':
+      case 'index.php':
+        return true
+    }
+    return false
   }
 }

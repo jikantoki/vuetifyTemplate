@@ -9,7 +9,7 @@ v-app(ontouchstart="")
 </template>
 
 <script>
-import PackageJson from '../package.json'
+import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
 import commonHeader from '@/components/common/commonHeader.vue'
 import commonFooter from '@/components/common/commonFooter.vue'
