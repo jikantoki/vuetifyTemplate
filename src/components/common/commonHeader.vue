@@ -109,6 +109,7 @@ export default {
           this.drawer = true
         }
       }
+      /*
       console.log({
         distanceX: distanceX,
         distanceY: distanceY,
@@ -122,6 +123,7 @@ export default {
           y: endY
         }
       })
+      */
 
       // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
       if (distanceX < distanceY && distanceY > minimumDistance) {
