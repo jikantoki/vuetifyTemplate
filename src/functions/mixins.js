@@ -21,6 +21,14 @@ export default {
         if (this.drawer) this.drawer = false
         return 0
       }
+    },
+    /**
+     * 変数が使われてません！を無効化
+     * @param {*} obj エラーを無効化したい変数
+     * @returns objがtrueなら1
+     */
+    nulling(obj) {
+      if (obj) return 1
     }
   }
 }

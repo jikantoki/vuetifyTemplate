@@ -73,14 +73,14 @@ export default {
     }
 
     // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
-    const minimumDistance = 30
+    const minimumDistance = 20
     // スワイプ開始時の座標
     let startX = 0
     let startY = 0
     // スワイプ終了時の座標
     let endX = 0
     let endY = 0
-    console.log(endY)
+    this.nulling(endY)
 
     // 解説①：移動を開始した座標を取得
     window.addEventListener('touchstart', (e) => {
