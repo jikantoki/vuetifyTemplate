@@ -104,14 +104,16 @@ export default {
       // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
       if (distanceX > distanceY && distanceX > minimumDistance) {
         // スワイプ後の動作
-        console.log('左右スワイプ')
-        alert('swipe')
+        if (endX - startX > 0) {
+          //rightswipe
+          this.drawer = true
+        }
       }
 
       // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
       if (distanceX < distanceY && distanceY > minimumDistance) {
         // スワイプ後の動作
-        console.log('上下スワイプ')
+        //console.log('上下スワイプ')
       }
     })
   },
