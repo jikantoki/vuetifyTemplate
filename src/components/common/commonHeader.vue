@@ -73,7 +73,7 @@ export default {
     }
 
     // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
-    const minimumDistance = 20
+    const minimumDistance = 10
     // スワイプ開始時の座標
     let startX = 0
     let startY = 0
