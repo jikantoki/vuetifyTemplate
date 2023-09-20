@@ -17,6 +17,8 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 - VSCode、Git、Eslint、Prettier周りの設定ファイル
 - PugとSASS
 - PWA Preset
+- ダークテーマ
+- Google Fonts
 
 ## 注意
 
@@ -49,6 +51,9 @@ yarn serve
 | -------- | ------------- |
 | アプリ名 | /package.json |
 | フォント | /src/app.vue  |
+| ナビゲーション | /src/items/itemNavigationList.js |
+| ページ毎のメタ情報 | /src/router/router.js |
+| 404ページ | /src/views/error/errorNotFound.vue |
 
 ### Compiles and minifies for production
 
