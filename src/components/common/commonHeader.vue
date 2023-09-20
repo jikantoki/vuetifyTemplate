@@ -12,6 +12,8 @@ v-navigation-drawer(v-model="drawer" fixed temporary)
       v-list-item(v-for="navigationItem in NavigationList")
         li.nav(@click="a(navigationItem.url)")
           p {{ navigationItem.name }}
+      v-list-item
+        //v-btn(@click="changeTheme()") Click!
 </template>
 
 <script>
@@ -19,6 +21,7 @@ import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
 import NavigationList from '@/items/itemNavigationList'
 import router, { currentMeta } from '@/router/router'
+import { useTheme } from 'vuetify'
 export default {
   components: {},
   data() {
@@ -29,18 +32,27 @@ export default {
       currentMeta: currentMeta,
       drawer: false,
       group: null,
-      isRoot: false
+      isRoot: false,
+      theme: 'light',
+      useTheme: useTheme()
     }
   },
   watch: {
-    $route(e) {
+    $route() {
       const now = new URL(window.location.href)
       if (Functions.isRoot(now.pathname)) {
         this.isRoot = true
       } else {
         this.isRoot = false
       }
-      console.log(e)
+    }
+  },
+  mounted() {
+    const now = new URL(window.location.href)
+    if (Functions.isRoot(now.pathname)) {
+      this.isRoot = true
+    } else {
+      this.isRoot = false
     }
   },
   methods: {
@@ -105,7 +117,8 @@ export default {
         router.back()
         return 0
       }
-    }
+    },
+    changeTheme() {}
   }
 }
 </script>

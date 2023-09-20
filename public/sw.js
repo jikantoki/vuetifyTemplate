@@ -5,7 +5,7 @@ var CACHE_NAME = 'pwa-sample-caches'
 var urlsToCache = []
 
 self.addEventListener('install', function (event) {
-  console.log('sw event: install called')
+  //console.log('sw event: install called')
 
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
@@ -15,7 +15,7 @@ self.addEventListener('install', function (event) {
 })
 
 self.addEventListener('fetch', function (event) {
-  console.log('sw event: fetch called')
+  /*console.log('sw event: fetch called')*/
 
   event.respondWith(
     caches.match(event.request).then(function (response) {

@@ -67,5 +67,5 @@ router.afterEach((to) => {
     MetaFunction.updateMeta('description', routes[0].meta.description)
   }
   currentMeta = to.meta
-  console.log('page moved')
+  //console.log('page moved')
 })
