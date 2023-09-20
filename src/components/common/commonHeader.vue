@@ -98,8 +98,8 @@ export default {
     window.addEventListener('touchend', () => {
       // スワイプ終了時にx軸とy軸の移動量を取得
       // 左スワイプに対応するためMath.abs()で+に変換
-      const distanceX = Math.abs(endX - startX)
-      const distanceY = Math.abs(endX - startY)
+      const distanceX = this.unsigned(endX - startX)
+      const distanceY = this.unsigned(endY - startY)
 
       // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
       if (distanceX > distanceY && distanceX > minimumDistance) {
@@ -109,6 +109,19 @@ export default {
           this.drawer = true
         }
       }
+      console.log({
+        distanceX: distanceX,
+        distanceY: distanceY,
+        minimumDistance: minimumDistance,
+        start: {
+          x: startX,
+          y: startY
+        },
+        end: {
+          x: endX,
+          y: endY
+        }
+      })
 
       // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
       if (distanceX < distanceY && distanceY > minimumDistance) {

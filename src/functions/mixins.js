@@ -23,6 +23,18 @@ export default {
       }
     },
     /**
+     * 0未満なら-1で乗算する
+     * @param {int, float} number 変換したい数値
+     * @returns 正の値
+     */
+    unsigned(number) {
+      if (number < 0) {
+        return number * -1
+      } else {
+        return number
+      }
+    },
+    /**
      * 変数が使われてません！を無効化
      * @param {*} obj エラーを無効化したい変数
      * @returns objがtrueなら1
