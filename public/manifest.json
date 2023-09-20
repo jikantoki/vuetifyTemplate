@@ -2,6 +2,7 @@
   "short_name": "Vue Temp",
   "name": "Vuetify Template",
   "display": "standalone",
+  "display_override": ["standalone"],
   "start_url": "./",
   "id": "./",
   "icons": [
