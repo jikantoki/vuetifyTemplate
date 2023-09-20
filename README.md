@@ -16,6 +16,7 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 - Vue-router
 - VSCode、Git、Eslint、Prettier周りの設定ファイル
 - PugとSASS
+- PWA Preset
 
 ## 注意
 

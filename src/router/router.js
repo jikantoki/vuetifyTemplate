@@ -11,6 +11,9 @@ const routes = [
     component: HomeView,
     meta: {
       title: 'Top',
+      /**
+       * 配列の最初のページのみdescriptionが必須
+       */
       description: 'Vuetifyを簡単に使えるテンプレート'
     }
   },
@@ -46,5 +49,8 @@ router.afterEach((to) => {
   if (to.meta.description) {
     MetaFunction.updateMeta('og:description', to.meta.description)
     MetaFunction.updateMeta('description', to.meta.description)
+  } else {
+    MetaFunction.updateMeta('og:description', routes[0].meta.description)
+    MetaFunction.updateMeta('description', routes[0].meta.description)
   }
 })
