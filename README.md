@@ -17,13 +17,19 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 - VSCode、Git、Eslint、Prettier周りの設定ファイル
 - PugとSASS
 - PWA Preset
-- ダークテーマ
+- ダークテーマ（切り替えボタンあり）
 - Google Fonts
+- Cookie API（独自実装）
+- 画面を右スワイプでメニュー表示
+- イイカンジにカスタマイズされたSCSSファイル
+- コピペで使えるpugテンプレート
 
 ## 注意
 
 ポート12345で動くようにしてあります  
 VSCodeでの利用を推奨
+
+-Vue3慣れてなくてOptions API使ってるけど許して-
 
 ## Setup
 
