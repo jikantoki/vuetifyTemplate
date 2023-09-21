@@ -41,17 +41,12 @@ export default {
     },
     /**
      * クッキーの特定のキーを取得
-     * クッキーが許可されてなければfalse
      * @param {string} name 取得したいCookieのキー
-     * @returns キーがあればvalue、無ければnull、許可ないのはfalse
+     * @returns キーがあればvalue、無ければnull
      */
     getCookie(name) {
-      if (this.cookieAllowed) {
-        let c = new RegExp(name + '=[^;]+').exec(document.cookie)
-        return c ? c[0].replace(name + '=', '') : null
-      } else {
-        return false
-      }
+      let c = new RegExp(name + '=[^;]+').exec(document.cookie)
+      return c ? c[0].replace(name + '=', '') : null
     },
     /**
      * 全てのクッキーを連想配列で返す
@@ -88,6 +83,25 @@ export default {
       } else {
         return false
       }
+    },
+    checkCookie() {
+      let isAllow = this.getCookie('cookieAllowed')
+      this.cookieAllowed = isAllow
+      return isAllow
+    },
+    /**
+     * Cookieを許可する
+     */
+    allowCookie() {
+      document.cookie = 'cookieAllowed=true;'
+      this.allowCookie = true
+    },
+    /**
+     * Cookieを拒否する
+     */
+    denyCookie() {
+      document.cookie = 'cookieAllowed=false;'
+      this.allowCookie = false
     },
     /**
      * 変数が使われてません！を無効化
