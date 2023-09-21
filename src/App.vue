@@ -161,5 +161,17 @@ $body-font-family: $font;
   button {
     margin: 0.5em;
   }
+  .content {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+    border-radius: 16px;
+  }
+  .wrap {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0px;
+  }
 }
 </style>

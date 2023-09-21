@@ -1,6 +1,6 @@
 <template lang="pug">
 .wrap
-  v-card.content
+  v-card.content(elevation="4")
     .text-h1 VueTemp {{ PackageJson.version }}
     .text-h6 Vuetifyを簡単に最速に構築できるサンプル
     .btns
@@ -22,17 +22,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.content {
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  border-radius: 16px;
-}
-.wrap {
-  display: flex;
-  justify-content: center;
-  padding: 8px 0px;
-}
-</style>
+<style lang="scss" scoped></style>

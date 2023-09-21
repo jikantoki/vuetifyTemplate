@@ -51,13 +51,15 @@ export default {
       }
     },
     isDarkTheme(isDark) {
-      if (this.$vuetify.theme.global.name === 'light' && isDark) {
+      if (isDark) {
         this.$vuetify.theme.global.name = 'dark'
         MetaFunctions.setStatusColor('#222222')
+        this.setCookie('theme', 'dark')
       }
-      if (this.$vuetify.theme.global.name === 'dark' && !isDark) {
+      if (!isDark) {
         this.$vuetify.theme.global.name = 'light'
         MetaFunctions.setStatusColor('#FFFFFF')
+        this.setCookie('theme', 'light')
       }
     }
   },
@@ -71,10 +73,26 @@ export default {
     if (this.$vuetify.theme.global.name === 'light' && this.isDarkTheme) {
       this.$vuetify.theme.global.name = 'dark'
       MetaFunctions.setStatusColor('#222222')
+      this.setCookie('theme', 'dark')
     }
-    if (this.$vuetify.theme.global.name === 'dark' && !isDarkthe) {
+    if (this.$vuetify.theme.global.name === 'dark' && !this.isDarktheme) {
       this.$vuetify.theme.global.name = 'light'
       MetaFunctions.setStatusColor('#FFFFFF')
+      this.setCookie('theme', 'light')
+    }
+
+    const theme = this.getCookie('theme')
+    if (theme) {
+      switch (theme) {
+        case 'light':
+          this.$vuetify.theme.global.name = 'light'
+          MetaFunctions.setStatusColor('#FFFFFF')
+          break
+        case 'dark':
+          this.$vuetify.theme.global.name = 'dark'
+          MetaFunctions.setStatusColor('#222222')
+          break
+      }
     }
 
     // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
@@ -135,10 +153,12 @@ export default {
         this.$vuetify.theme.global.name = 'light'
         this.isDarkTheme = false
         MetaFunctions.setStatusColor('#FFFFFF')
+        this.setCookie('theme', 'light')
       } else {
         this.$vuetify.theme.global.name = 'dark'
         this.isDarkTheme = true
         MetaFunctions.setStatusColor('#222222')
+        this.setCookie('theme', 'dark')
       }
     },
     /**

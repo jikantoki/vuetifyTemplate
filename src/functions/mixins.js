@@ -10,6 +10,10 @@ export default {
       cookieAllowed: false
     }
   },
+  mounted() {
+    const isAllow = this.getCookie('cookieAllowed')
+    this.cookieAllowed = isAllow
+  },
   methods: {
     /**
      * <p>aタグと同じ動きをするし、pjaxになる</p>
@@ -77,6 +81,7 @@ export default {
      * @returns OKだったらTrue、許可がなかったらFalse
      */
     setCookie(key, value) {
+      console.log(this.cookieAllowed)
       if (this.cookieAllowed) {
         document.cookie = `${key}=${value};`
         return true
