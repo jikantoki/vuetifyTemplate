@@ -48,6 +48,19 @@ export default {
     return returnCode
   },
   /**
+   * PWA/TWAでステータスバーの色を変更
+   * @param {string} color カラーコードまたは色名
+   * @returns 更新できたら0、無理だったら1
+   */
+  setStatusColor: (color) => {
+    const theme = document.querySelector('meta[name="theme-color"]')
+    if (theme) {
+      theme.setAttribute('content', color)
+      return 0
+    }
+    return 1
+  },
+  /**
    * このプロジェクトの説明とか入ってる
    */
   PackageJson: PackageJson,

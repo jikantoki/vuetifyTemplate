@@ -21,6 +21,7 @@ v-navigation-drawer.pa-0(v-model="drawer" fixed temporary)
 <script>
 import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
+import MetaFunctions from '@/functions/metaFunctions'
 import NavigationList from '@/items/itemNavigationList'
 import router, { currentMeta } from '@/router/router'
 import mixins from '@/functions/mixins'
@@ -52,9 +53,11 @@ export default {
     isDarkTheme(isDark) {
       if (this.$vuetify.theme.global.name === 'light' && isDark) {
         this.$vuetify.theme.global.name = 'dark'
+        MetaFunctions.setStatusColor('#222222')
       }
       if (this.$vuetify.theme.global.name === 'dark' && !isDark) {
         this.$vuetify.theme.global.name = 'light'
+        MetaFunctions.setStatusColor('#FFFFFF')
       }
     }
   },
@@ -67,9 +70,11 @@ export default {
     }
     if (this.$vuetify.theme.global.name === 'light' && this.isDarkTheme) {
       this.$vuetify.theme.global.name = 'dark'
+      MetaFunctions.setStatusColor('#222222')
     }
     if (this.$vuetify.theme.global.name === 'dark' && !isDarkthe) {
       this.$vuetify.theme.global.name = 'light'
+      MetaFunctions.setStatusColor('#FFFFFF')
     }
 
     // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
@@ -129,9 +134,11 @@ export default {
       if (this.isDarkTheme) {
         this.$vuetify.theme.global.name = 'light'
         this.isDarkTheme = false
+        MetaFunctions.setStatusColor('#FFFFFF')
       } else {
         this.$vuetify.theme.global.name = 'dark'
         this.isDarkTheme = true
+        MetaFunctions.setStatusColor('#222222')
       }
     },
     /**
