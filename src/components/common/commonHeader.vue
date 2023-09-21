@@ -85,12 +85,10 @@ export default {
     if (theme) {
       switch (theme) {
         case 'light':
-          this.$vuetify.theme.global.name = 'light'
-          MetaFunctions.setStatusColor('#FFFFFF')
+          this.isDarkTheme = false
           break
         case 'dark':
-          this.$vuetify.theme.global.name = 'dark'
-          MetaFunctions.setStatusColor('#222222')
+          this.isDarkTheme = true
           break
       }
     }
@@ -150,15 +148,9 @@ export default {
     },
     toggleTheme() {
       if (this.isDarkTheme) {
-        this.$vuetify.theme.global.name = 'light'
         this.isDarkTheme = false
-        MetaFunctions.setStatusColor('#FFFFFF')
-        this.setCookie('theme', 'light')
       } else {
-        this.$vuetify.theme.global.name = 'dark'
         this.isDarkTheme = true
-        MetaFunctions.setStatusColor('#222222')
-        this.setCookie('theme', 'dark')
       }
     },
     /**
