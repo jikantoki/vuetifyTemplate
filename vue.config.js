@@ -3,12 +3,12 @@ module.exports = defineConfig({
   transpileDependencies: true,
 
   devServer: {
-    port: 12345,
+    port: 12345
   },
 
   pluginOptions: {
     vuetify: {
-			// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
-		}
+      // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+    }
   }
 })

@@ -3,6 +3,8 @@
   "name": "Vuetify Template",
   "display": "standalone",
   "display_override": ["standalone"],
+  "background_color": "#000000",
+  "lang": "ja-JP",
   "start_url": "./",
   "id": "./",
   "icons": [
@@ -22,6 +24,18 @@
       "src": "img/icon512.png",
       "sizes": "512x512",
       "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Top",
+      "description": "トップページ",
+      "url": "/"
+    },
+    {
+      "name": "About",
+      "description": "このアプリについて",
+      "url": "/about"
     }
   ],
   "description": "簡単にVuetifyを使用するチュートリアルパッケージ"

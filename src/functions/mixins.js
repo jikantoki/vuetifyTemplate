@@ -5,6 +5,11 @@
 
 import router from '@/router/router'
 export default {
+  data() {
+    return {
+      cookieAllowed: false
+    }
+  },
   methods: {
     /**
      * <p>aタグと同じ動きをするし、pjaxになる</p>
@@ -35,12 +40,66 @@ export default {
       }
     },
     /**
+     * クッキーの特定のキーを取得
+     * クッキーが許可されてなければfalse
+     * @param {string} name 取得したいCookieのキー
+     * @returns キーがあればvalue、無ければnull、許可ないのはfalse
+     */
+    getCookie(name) {
+      if (this.cookieAllowed) {
+        let c = new RegExp(name + '=[^;]+').exec(document.cookie)
+        return c ? c[0].replace(name + '=', '') : null
+      } else {
+        return false
+      }
+    },
+    /**
+     * 全てのクッキーを連想配列で返す
+     * クッキーが許可されてなければfalse
+     * @returns cookie or null or false
+     */
+    getAllCookie() {
+      if (this.cookieAllowed) {
+        let cookie = document.cookie
+        if (!cookie || cookie === '') {
+          return null
+        }
+        let cookieArray = cookie.split(';')
+        let newCookieArray = []
+        for (const keyAndValue of cookieArray) {
+          let keyValue = keyAndValue.split('=')
+          newCookieArray.push(keyValue)
+        }
+        return newCookieArray
+      } else {
+        return false
+      }
+    },
+    /**
+     * クッキーをセットする
+     * @param {string} key 設定したいキー
+     * @param {*} value 設定したい値
+     * @returns OKだったらTrue、許可がなかったらFalse
+     */
+    setCookie(key, value) {
+      if (this.cookieAllowed) {
+        document.cookie = `${key}=${value};`
+        return true
+      } else {
+        return false
+      }
+    },
+    /**
      * 変数が使われてません！を無効化
      * @param {*} obj エラーを無効化したい変数
      * @returns objがtrueなら1
      */
     nulling(obj) {
       if (obj) return 1
+    },
+    crack() {
+      alert('さてはオメー、ソースコードを見ているな！？！？！？')
+      return 7095110
     }
   }
 }

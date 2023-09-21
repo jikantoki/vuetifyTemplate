@@ -5,6 +5,7 @@ v-app(ontouchstart="")
   v-main
     .center
       router-view
+      common-cookie-get-permission
   v-footer
     common-footer
 </template>
@@ -14,6 +15,7 @@ import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
 import commonHeader from '@/components/common/commonHeader.vue'
 import commonFooter from '@/components/common/commonFooter.vue'
+import commonCookieGetPermission from '@/components/common/commonCookieGetPermission'
 import mixins from '@/functions/mixins'
 
 export default {
@@ -26,7 +28,8 @@ export default {
    */
   components: {
     commonHeader: commonHeader,
-    commonFooter: commonFooter
+    commonFooter: commonFooter,
+    commonCookieGetPermission: commonCookieGetPermission
   },
   mixins: [mixins],
   /**
@@ -78,6 +81,8 @@ $font: 'Zen Maru Gothic', sans-serif;
 $body-font-family: $font;
 :root {
   font-size: 16px;
+  --color-allow: #cceeff;
+  --color-error: #ffcccc;
 }
 * {
   user-select: none;
@@ -139,6 +144,9 @@ $body-font-family: $font;
   }
   .text-h6 {
     font-size: 1.5em !important;
+  }
+  .text-h7 {
+    font-size: 1em !important;
   }
   .text-h1,
   .text-h2,
