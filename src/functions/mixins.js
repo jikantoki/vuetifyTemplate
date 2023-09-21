@@ -4,7 +4,12 @@
  */
 
 import router from '@/router/router'
+import adsense from '@/components/common/commonAdsense'
+
 export default {
+  components: {
+    adsense: adsense
+  },
   data() {
     return {
       cookieAllowed: false
