@@ -86,7 +86,6 @@ export default {
      * @returns OKだったらTrue、許可がなかったらFalse
      */
     setCookie(key, value) {
-      console.log(this.cookieAllowed)
       if (this.cookieAllowed) {
         document.cookie = `${key}=${value};`
         return true
