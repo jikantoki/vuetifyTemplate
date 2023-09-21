@@ -79,6 +79,10 @@ $font: 'Zen Maru Gothic', sans-serif;
   }
 }
 $body-font-family: $font;
+html,
+body {
+  height: 100vh !important;
+}
 :root {
   font-size: 16px;
   --color-allow: #cceeff;
@@ -91,7 +95,6 @@ $body-font-family: $font;
   font-family: $font !important;
 }
 #app {
-  height: 100vh !important;
   font-family: $font !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
