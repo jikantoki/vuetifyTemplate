@@ -6,7 +6,11 @@ adsense(ad-client="ca-pub-8459277046412894"
 </template>
 
 <script>
+import vueAdsense from '@/modules/vue-adsense'
 export default {
+  components: {
+    adsense: vueAdsense
+  },
   data() {
     return {}
   },
