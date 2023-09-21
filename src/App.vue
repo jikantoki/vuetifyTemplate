@@ -91,6 +91,7 @@ $body-font-family: $font;
   font-family: $font !important;
 }
 #app {
+  height: 100vh !important;
   font-family: $font !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
