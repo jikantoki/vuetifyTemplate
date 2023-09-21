@@ -1,5 +1,5 @@
 <template lang="pug">
-v-app(ontouchstart="")
+v-app.wrap100vh(ontouchstart="" style="min-height: 100vh!important;")
   header
     common-header
   v-main
@@ -176,6 +176,9 @@ body {
     display: flex;
     justify-content: center;
     padding: 8px 0px;
+  }
+  .wrap100vh {
+    min-height: 100vh !important;
   }
 }
 </style>
