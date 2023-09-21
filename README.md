@@ -29,7 +29,7 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 ポート12345で動くようにしてあります  
 VSCodeでの利用を推奨
 
--Vue3慣れてなくてOptions API使ってるけど許して-
+~~Vue3慣れてなくてOptions API使ってるけど許して~~
 
 ## Setup
 
