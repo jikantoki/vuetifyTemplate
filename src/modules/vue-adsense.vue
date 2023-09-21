@@ -1,4 +1,3 @@
-<!-- eslint-disable no-extra-semi -->
 <template lang="pug">
 ins.adsbygoogle(
   :data-ad-client="adClient"

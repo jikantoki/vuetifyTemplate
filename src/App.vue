@@ -1,5 +1,5 @@
 <template lang="pug">
-v-app.wrap100vh(ontouchstart="" style="min-height: 100vh!important;")
+v-app.wrap100vh(ontouchstart="" style="min-height: 100vh!important;width:100vw")
   header
     common-header
   v-main
@@ -8,6 +8,7 @@ v-app.wrap100vh(ontouchstart="" style="min-height: 100vh!important;")
       common-cookie-get-permission
   v-footer
     common-footer
+.right-space(style="min-height: 100vh")
 </template>
 
 <script>
