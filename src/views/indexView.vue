@@ -8,7 +8,7 @@
       v-btn(@click="console.log(setCookie('test', '001'))") Add Cookie
       v-btn(@click="console.log(getAllCookie())") Get Cookie
       v-btn(@click="push('Hello')") Push notification
-      v-btn(@click="send()") ajax!
+      v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
 </template>
 
 <script>
@@ -21,11 +21,7 @@ export default {
       PackageJson: PackageJson
     }
   },
-  methods: {
-    send() {
-      //ajax送信したい
-    }
-  }
+  methods: {}
 }
 </script>
 
