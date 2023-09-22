@@ -20,8 +20,8 @@ export default {
    * ```js
     return {
       ajaxで貰った内容,
-      body: 'もしajax結果がJSONじゃなかったらレスポンス内容はここに',
-      isText: bool, //JSONじゃなかったらTrue、JSONならundefined
+      body: ajax先から貰ったデータ（JSONならObjectに変換）,
+      isJSON: bool, //JSONだったらTrue、違うならFalse
       ajaxInfo: {
         status: int, //HTTPステータス
         statusText: string, //Not Foundとかが入る
@@ -33,7 +33,7 @@ export default {
    *
    * @param url {string} URL（フルパスかルートディレクトリから入力）
    * @param isPost {bool} trueならPOST、false（default）ならGET
-   * @returns object もし結果がJSONならObjectに変換するし、それ以外でもreturn.bodyに格納します
+   * @returns object Webサイトから貰ったデータはobject.bodyに格納
    */
   send: (url, obj = null, isPost = false) => {
     let methods = isPost ? 'POST' : 'GET'
@@ -47,13 +47,16 @@ export default {
         if (request.readyState == 4) {
           if (request.status === 200) {
             //console.log(request)
-            let response
+            let response = {}
             try {
-              response = JSON.parse(request.response)
+              response = {
+                body: JSON.parse(request.response),
+                isJSON: true
+              }
             } catch {
               response = {
                 body: request.response,
-                isText: true
+                isJSON: false
               }
             }
             response.ajaxInfo = {
