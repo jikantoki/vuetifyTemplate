@@ -112,7 +112,8 @@ export default {
       }
     },
     checkCookie() {
-      let isAllow = this.getCookie('cookieAllowed')
+      let isAllow = localStorage.cookieAllowed
+      isAllow = isAllow ? true : false
       this.cookieAllowed = isAllow
       return isAllow
     },
@@ -120,15 +121,15 @@ export default {
      * Cookieを許可する
      */
     allowCookie() {
-      document.cookie = 'cookieAllowed=true;'
-      this.allowCookie = true
+      localStorage.cookieAllowed = true
+      this.cookieAllowed = true
     },
     /**
      * Cookieを拒否する
      */
     denyCookie() {
-      document.cookie = 'cookieAllowed=false;'
-      this.allowCookie = false
+      localStorage.cookieAllowed = false
+      this.cookieAllowed = false
     },
     /**
      * ## 通知の送信（Object型）

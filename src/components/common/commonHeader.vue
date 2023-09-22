@@ -54,12 +54,12 @@ export default {
       if (isDark) {
         this.$vuetify.theme.global.name = 'dark'
         MetaFunctions.setStatusColor('#222222')
-        this.setCookie('theme', 'dark')
+        localStorage.theme = 'dark'
       }
       if (!isDark) {
         this.$vuetify.theme.global.name = 'light'
         MetaFunctions.setStatusColor('#FFFFFF')
-        this.setCookie('theme', 'light')
+        localStorage.theme = 'light'
       }
     }
   },
@@ -73,12 +73,12 @@ export default {
     if (this.$vuetify.theme.global.name === 'light' && this.isDarkTheme) {
       this.$vuetify.theme.global.name = 'dark'
       MetaFunctions.setStatusColor('#222222')
-      this.setCookie('theme', 'dark')
+      localStorage.theme = 'dark'
     }
     if (this.$vuetify.theme.global.name === 'dark' && !this.isDarktheme) {
       this.$vuetify.theme.global.name = 'light'
       MetaFunctions.setStatusColor('#FFFFFF')
-      this.setCookie('theme', 'light')
+      localStorage.theme = 'light'
     }
 
     const theme = this.getCookie('theme')
