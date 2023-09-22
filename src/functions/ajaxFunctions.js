@@ -9,7 +9,7 @@ export default {
    * ___
    * ### 使い方
    * ```js
-    ajaxFunctions.send().then((value) => {
+    ajaxFunctions.send(url,{example:'example'}).then((value) => {
       console.log(value)
     }).catch((error) => {
       console.log(error)

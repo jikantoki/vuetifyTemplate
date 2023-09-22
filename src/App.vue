@@ -18,7 +18,6 @@ import commonHeader from '@/components/common/commonHeader.vue'
 import commonFooter from '@/components/common/commonFooter.vue'
 import commonCookieGetPermission from '@/components/common/commonCookieGetPermission'
 import mixins from '@/functions/mixins'
-import ajaxFunctions from './functions/ajaxFunctions'
 
 export default {
   /**
@@ -53,19 +52,17 @@ export default {
   mounted() {
     PackageJson.name = Functions.ifEnglishStartUpper(PackageJson.name)
 
-    ajaxFunctions
-      .send('/api/test/object.html', {
-        goodbye: 'バイバ～イ!yeah',
-        sayMeow: 'みゃお'
-      })
+    this.sendAjax('/api/test/object.html', {
+      goodbye: 'バイバ～イ!yeah',
+      sayMeow: 'みゃお'
+    })
       .then((value) => {
         console.log(value)
       })
       .catch((e) => {
         console.warn(e)
       })
-    ajaxFunctions
-      .send('/api/test/string.html')
+    this.sendAjax('/api/test/string.html')
       .then((value) => {
         console.log(value)
       })

@@ -13,17 +13,29 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 - Vue CLI Service
 - Vue3
 - Vuetify3
+- Vuetify ダークテーマ
 - Vue-router
 - VSCode、Git、Eslint、Prettier周りの設定ファイル
 - PugとSASS
 - PWA Preset
-- ダークテーマ（切り替えボタンあり）
 - Google Fonts
-- Cookie API（独自実装）
+
+## 独自実装
+
+- Cookie API
+- Ajax API
 - 画面を右スワイプでメニュー表示
 - イイカンジにカスタマイズされたSCSSファイル
 - コピペで使えるpugテンプレート
 - 汎用性の高い関数群
+- ダークテーマ切り替えボタン
+
+## 制作予定
+
+- LocalStorage API
+- Push API（使いやすいように改良）
+- Notification API（使いやすいように改良）
+- Google Firebase API
 
 ## 注意
 

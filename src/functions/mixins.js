@@ -5,6 +5,7 @@
 
 import router from '@/router/router'
 import adsense from '@/components/common/commonAdsense'
+import ajaxFunctions from './ajaxFunctions'
 
 export default {
   components: {
@@ -20,6 +21,7 @@ export default {
     this.cookieAllowed = isAllow
   },
   methods: {
+    sendAjax: ajaxFunctions.send,
     /**
      * <p>aタグと同じ動きをするし、pjaxになる</p>
      * <p>外部URLの場合、新しいタブで開く</p>
