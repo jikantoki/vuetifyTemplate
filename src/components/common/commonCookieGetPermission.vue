@@ -12,8 +12,9 @@ import mixins from '@/functions/mixins'
 export default {
   mixins: [mixins],
   mounted() {
-    this.checkCookie()
-  }
+    this.cookieAllowed = this.checkCookie()
+  },
+  methods: {}
 }
 </script>
 
@@ -24,7 +25,6 @@ export default {
   top: 10%;
 }
 .v-btn {
-  //background-color: $color-allow;
   background-color: var(--color-allow);
 }
 </style>
