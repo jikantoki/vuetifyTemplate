@@ -51,6 +51,24 @@ export default {
    */
   mounted() {
     PackageJson.name = Functions.ifEnglishStartUpper(PackageJson.name)
+
+    this.sendAjax('/api/test/object.html', {
+      goodbye: 'バイバ～イ!yeah',
+      sayMeow: 'みゃお'
+    })
+      .then((value) => {
+        console.log(value)
+      })
+      .catch((e) => {
+        console.warn(e)
+      })
+    this.sendAjax('/api/test/string.html')
+      .then((value) => {
+        console.log(value)
+      })
+      .catch((e) => {
+        console.warn(e)
+      })
   },
   /**
    * ページ離脱時にやりたい事
