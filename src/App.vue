@@ -84,7 +84,7 @@ export default {
 <style lang="scss">
 $breakpoints: (
   'smartPhone': 'screen and (max-width:900px)',
-  'tablet': 'screen and (max-width:1200px)'
+  'tablet': 'screen and (max-width:1400px)'
 ) !default;
 
 /* フォント設定 */
@@ -139,36 +139,26 @@ body {
     }
   }
   .text-h1 {
-    font-size: 5em !important;
-    @include mq('smartPhone') {
-      font-size: 4em !important;
-    }
+    font-size: 3em !important;
   }
   .text-h2 {
-    font-size: 4em !important;
-    @include mq('smartPhone') {
-      font-size: 3em !important;
-    }
+    font-size: 2.8em !important;
   }
   .text-h3 {
-    font-size: 3em !important;
-    @include mq('smartPhone') {
-      font-size: 2.5em !important;
-    }
+    font-size: 2.4em !important;
   }
   .text-h4 {
-    font-size: 2.5em !important;
-    @include mq('smartPhone') {
-      font-size: 2.2em !important;
-    }
+    font-size: 2.2em !important;
   }
   .text-h5 {
     font-size: 2em !important;
   }
-  .text-h6 {
+  .text-h6,
+  .text {
     font-size: 1.5em !important;
   }
-  .text-h7 {
+  .text-h7,
+  .text-small {
     font-size: 1em !important;
   }
   .text-h1,
@@ -195,9 +185,30 @@ body {
     display: flex;
     justify-content: center;
     padding: 8px 0px;
+    flex-direction: column;
+    align-items: center;
   }
   .wrap100vh {
     min-height: 100vh !important;
+  }
+  .ontext {
+    height: 1em;
+    vertical-align: middle;
+    object-fit: cover;
+  }
+  hr {
+    margin: 8px auto;
+    width: 95%;
+    align-items: center;
+    border: 1px solid;
+    opacity: 0.3;
+  }
+  .v-list-item__content {
+    display: flex;
+    align-items: center;
+    .nav {
+      margin-left: 16px;
+    }
   }
 }
 </style>

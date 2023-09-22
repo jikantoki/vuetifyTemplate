@@ -10,19 +10,25 @@ v-navigation-drawer.pa-0(v-model="drawer" fixed temporary)
   v-list(nav dense)
     v-item-group(v-model="group" active-class="deep-purple-text text--accent-4")
       v-list-item.pa-4(link v-for="navigationItem in NavigationList" @click="a(navigationItem.url)")
-          p.nav {{ navigationItem.name }}
-      v-divider
-      .themeSwitch.pa-4
-        div Dark Theme
-        v-list-item-action
+        v-icon(style="opacity:0.7") {{ navigationItem.icon }}
+        p.nav {{ navigationItem.name }}
+      v-divider(style="opacity:0.3")
+      v-list-item.pa-4(link v-for="navigationItem in infoList" @click="a(navigationItem.url)")
+        v-icon(style="opacity:0.7") {{ navigationItem.icon }}
+        p.nav {{ navigationItem.name }}
+      v-divider(style="opacity:0.3")
+      v-list-item.pa-4
+        v-icon(style="opacity:0.7") mdi-theme-light-dark
+        p.nav Theme
+          v-list-item-action
           v-switch(v-model="isDarkTheme")
 </template>
 
 <script>
-import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
 import MetaFunctions from '@/functions/metaFunctions'
 import NavigationList from '@/items/itemNavigationList'
+import infoList from '@/items/itemInfoList'
 import router, { currentMeta } from '@/router/router'
 import mixins from '@/functions/mixins'
 export default {
@@ -30,8 +36,8 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      PackageJson: PackageJson,
       NavigationList: NavigationList,
+      infoList: infoList,
       Functions: Functions,
       currentMeta: currentMeta,
       drawer: false,
@@ -221,5 +227,10 @@ export default {
 }
 button {
   margin: 0.2em !important;
+}
+.v-input {
+  display: flex;
+  padding-right: 10%;
+  justify-content: flex-end;
 }
 </style>

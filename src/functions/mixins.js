@@ -6,6 +6,7 @@
 import router from '@/router/router'
 import adsense from '@/components/common/commonAdsense'
 import ajaxFunctions from './ajaxFunctions'
+import PackageJson from '/package.json'
 
 export default {
   components: {
@@ -13,11 +14,12 @@ export default {
   },
   data() {
     return {
-      cookieAllowed: false
+      cookieAllowed: false,
+      PackageJson: PackageJson
     }
   },
   mounted() {
-    const isAllow = this.getCookie('cookieAllowed')
+    const isAllow = localStorage.cookieAllowed === 'true'
     this.cookieAllowed = isAllow
   },
   methods: {
@@ -77,25 +79,20 @@ export default {
     },
     /**
      * 全てのクッキーを連想配列で返す
-     * クッキーが許可されてなければfalse
-     * @returns cookie or null or false
+     * @returns cookie
      */
     getAllCookie() {
-      if (this.cookieAllowed) {
-        let cookie = document.cookie
-        if (!cookie || cookie === '') {
-          return null
-        }
-        let cookieArray = cookie.split(';')
-        let newCookieArray = []
-        for (const keyAndValue of cookieArray) {
-          let keyValue = keyAndValue.split('=')
-          newCookieArray.push(keyValue)
-        }
-        return newCookieArray
-      } else {
-        return false
+      let cookie = document.cookie
+      if (!cookie || cookie === '') {
+        return null
       }
+      let cookieArray = cookie.split(';')
+      let newCookieArray = []
+      for (const keyAndValue of cookieArray) {
+        let keyValue = keyAndValue.split('=')
+        newCookieArray.push(keyValue)
+      }
+      return newCookieArray
     },
     /**
      * クッキーをセットする
