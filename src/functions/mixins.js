@@ -113,6 +113,52 @@ export default {
       this.allowCookie = false
     },
     /**
+     * ## 通知の送信（Object型）
+     * #### 通知オプションの書き方
+     * actionsは2つまで実装可能
+     *
+     * actions.actionの中身をnotificationClickに渡します
+     * ```json
+     * {
+     *   "body": "message",
+     *   "icon": "icon_url",
+     *   "tag": "tag(optional)",
+     *   "actions": [
+     *     {
+     *       "action": "action_name",
+     *       "title": "action_title"
+     *     }
+     *   ]
+     * }
+     * ```
+     * @param {string} title 通知のタイトル
+     * @param {object} option 通知に表示したいもの
+     */
+    pushCustom(title, option) {
+      //event.waitUntil(self.registration.showNotification(title, option))
+      if (title || option) return 0
+    },
+    push(title, message) {
+      this.pushCustom(title, {
+        body: message,
+        icon: '/img/icon192.png',
+        tag: 'tag, warn',
+        actions: [
+          {
+            action: 'testA',
+            title: 'アクションA'
+          },
+          {
+            action: 'testB',
+            title: 'アクションB'
+          }
+        ]
+      })
+    },
+
+    //ここからは優先度低いやつ
+
+    /**
      * 変数が使われてません！を無効化
      * @param {*} obj エラーを無効化したい変数
      * @returns objがtrueなら1

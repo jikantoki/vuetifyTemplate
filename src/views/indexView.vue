@@ -7,6 +7,7 @@
       v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
       v-btn(@click="console.log(setCookie('test', '001'))") Add Cookie
       v-btn(@click="console.log(getAllCookie())") Get Cookie
+      v-btn(@click="push('Hello')") Push notification
 </template>
 
 <script>
