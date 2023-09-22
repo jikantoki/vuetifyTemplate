@@ -39,6 +39,22 @@ export default {
       }
     },
     /**
+     * ファイルをダウンロードさせる
+     * @param {string} filePath ファイルのパス
+     * @returns 0
+     */
+    download(filePath, name) {
+      if (!name) {
+        name = filePath
+      }
+      let element = document.createElement('a')
+      element.href = filePath
+      element.download = name
+      element.target = '_blank'
+      element.click()
+      return 0
+    },
+    /**
      * 0未満なら-1で乗算する
      * @param {int, float} number 変換したい数値
      * @returns 正の値
