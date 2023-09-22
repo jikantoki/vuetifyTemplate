@@ -81,7 +81,7 @@ export default {
       localStorage.theme = 'light'
     }
 
-    const theme = this.getCookie('theme')
+    const theme = localStorage.theme
     if (theme) {
       switch (theme) {
         case 'light':
