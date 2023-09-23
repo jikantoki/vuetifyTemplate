@@ -36,6 +36,7 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 - Push API（使いやすいように改良）
 - Notification API（使いやすいように改良）
 - Google Firebase API
+- リッチエディタ
 
 ## 注意
 
