@@ -10,17 +10,19 @@ v-navigation-drawer.pa-0(v-model="drawer" fixed temporary)
   v-list(nav dense)
     v-item-group(v-model="group" active-class="deep-purple-text text--accent-4")
       v-list-item.pa-4(link v-for="navigationItem in NavigationList" @click="a(navigationItem.url)")
-        v-icon(style="opacity:0.7") {{ navigationItem.icon }}
-        p.nav {{ navigationItem.name }}
+        .v-item
+          v-icon(style="opacity:0.7") {{ navigationItem.icon }}
+          p.nav {{ navigationItem.name }}
       v-divider(style="opacity:0.3")
       v-list-item.pa-4(link v-for="navigationItem in infoList" @click="a(navigationItem.url)")
-        v-icon(style="opacity:0.7") {{ navigationItem.icon }}
-        p.nav {{ navigationItem.name }}
+        .v-item
+          v-icon(style="opacity:0.7") {{ navigationItem.icon }}
+          p.nav {{ navigationItem.name }}
       v-divider(style="opacity:0.3")
       v-list-item.pa-4
-        v-icon(style="opacity:0.7") mdi-theme-light-dark
-        p.nav Theme
-          v-list-item-action
+        .v-item
+          v-icon(style="opacity:0.7") mdi-theme-light-dark
+          p.nav Theme
           v-switch(v-model="isDarkTheme")
 </template>
 
@@ -232,5 +234,16 @@ button {
   display: flex;
   padding-right: 10%;
   justify-content: flex-end;
+}
+.v-item {
+  display: flex;
+  align-items: center;
+  .nav {
+    margin-left: 16px;
+  }
+}
+.inline {
+  display: inline;
+  vertical-align: middle;
 }
 </style>

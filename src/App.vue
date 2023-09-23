@@ -203,12 +203,5 @@ body {
     border: 1px solid;
     opacity: 0.3;
   }
-  .v-list-item__content {
-    display: flex;
-    align-items: center;
-    .nav {
-      margin-left: 16px;
-    }
-  }
 }
 </style>
