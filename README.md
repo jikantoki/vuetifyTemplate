@@ -60,6 +60,25 @@ echo 'Vercelとかでデプロイしたらそのまま動く'
 
 ここで作れます https://web-push-codelab.glitch.me/
 
+#### ストレージを操作できる環境の場合
+
+ルートにmy.env.jsファイルを作成し、以下のように記述（クォーテーション必須）
+
+```env
+process.env.WebPush_PublicKey=パブリックキーをコピー
+process.env.WebPush_PrivateKey=プライベートキーをコピー
+```
+
+#### それ以外（Vercelデプロイ等）
+
+Project Settings → Enviroment Variables を開く  
+以下のように設定
+
+| Key                | Value            |
+| ------------------ | ---------------- |
+| WebPush_PublicKey  | パブリックキー   |
+| WebPush_PrivateKey | プライベートキー |
+
 ## コンソール側で初期化
 
 ```shell

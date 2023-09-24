@@ -26,6 +26,10 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+    process.env.test = 'gihwof'
+    console.log(process.env)
+  },
   methods: {}
 }
 </script>

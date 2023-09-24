@@ -1,6 +1,7 @@
 #Githubに共有したくないものを選ぶ
 /storage
 /.hidden
+*.env*
 
 .DS_Store
 /node_modules/*

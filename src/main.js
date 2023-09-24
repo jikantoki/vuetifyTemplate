@@ -5,6 +5,13 @@ import { loadFonts } from './plugins/webfontloader'
 import router from './router/router'
 
 require('@/styles/color.scss')
+import env from '/my.env.js'
+//require('dotenv').config() //Not Working
+
+const envKeys = Object.keys(env)
+envKeys.forEach((key) => {
+  process.env[key] = env[key]
+})
 
 loadFonts()
 
