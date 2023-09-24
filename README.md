@@ -44,6 +44,10 @@ VSCodeでの利用を推奨
 
 ~~Vue3慣れてなくてOptions API使ってるけど許して~~
 
+## 参考資料
+
+WebPush https://tech.excite.co.jp/entry/2021/06/30/104213
+
 ## Setup
 
 ```shell
