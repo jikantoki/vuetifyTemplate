@@ -27,7 +27,6 @@ export default {
     return {}
   },
   mounted() {
-    process.env.test = 'gihwof'
     console.log(process.env)
   },
   methods: {}
