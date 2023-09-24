@@ -32,7 +32,6 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 
 ## 制作予定
 
-- LocalStorage API
 - Push API（使いやすいように改良）
 - Notification API（使いやすいように改良）
 - Google Firebase API
