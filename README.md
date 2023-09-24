@@ -56,6 +56,10 @@ echo 'これだけでセットアップ完了！'
 echo 'Vercelとかでデプロイしたらそのまま動く'
 ```
 
+### WebPush用の鍵を作成
+
+ここで作れます https://web-push-codelab.glitch.me/
+
 ## コンソール側で初期化
 
 ```shell
