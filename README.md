@@ -62,11 +62,11 @@ echo 'Vercelとかでデプロイしたらそのまま動く'
 
 #### ストレージを操作できる環境の場合
 
-ルートにmy.env.jsファイルを作成し、以下のように記述（クォーテーション必須）
+ルートに.envファイルを作成し、以下のように記述（クォーテーション不要）
 
 ```env
-process.env.WebPush_PublicKey=パブリックキーをコピー
-process.env.WebPush_PrivateKey=プライベートキーをコピー
+VUE_APP_WebPush_PublicKey=パブリックキーをコピー
+VUE_APP_WebPush_PrivateKey=プライベートキーをコピー
 ```
 
 #### それ以外（Vercelデプロイ等）
@@ -74,10 +74,10 @@ process.env.WebPush_PrivateKey=プライベートキーをコピー
 Project Settings → Enviroment Variables を開く  
 以下のように設定
 
-| Key                | Value            |
-| ------------------ | ---------------- |
-| WebPush_PublicKey  | パブリックキー   |
-| WebPush_PrivateKey | プライベートキー |
+| Key                        | Value            |
+| -------------------------- | ---------------- |
+| VUE_APP_WebPush_PublicKey  | パブリックキー   |
+| VUE_APP_WebPush_PrivateKey | プライベートキー |
 
 ## コンソール側で初期化
 
