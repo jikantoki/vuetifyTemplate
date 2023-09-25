@@ -32,7 +32,6 @@ Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
 
 ## 制作予定
 
-- LocalStorage API
 - Push API（使いやすいように改良）
 - Notification API（使いやすいように改良）
 - Google Firebase API
@@ -45,6 +44,10 @@ VSCodeでの利用を推奨
 
 ~~Vue3慣れてなくてOptions API使ってるけど許して~~
 
+## 参考資料
+
+WebPush https://tech.excite.co.jp/entry/2021/06/30/104213
+
 ## Setup
 
 ```shell
@@ -53,10 +56,34 @@ echo 'これだけでセットアップ完了！'
 echo 'Vercelとかでデプロイしたらそのまま動く'
 ```
 
+### WebPush用の鍵を作成
+
+ここで作れます https://web-push-codelab.glitch.me/
+
+#### ストレージを操作できる環境の場合
+
+ルートに.envファイルを作成し、以下のように記述（クォーテーション不要）
+
+```env
+VUE_APP_WebPush_PublicKey=パブリックキーをコピー
+VUE_APP_WebPush_PrivateKey=プライベートキーをコピー
+```
+
+#### それ以外（Vercelデプロイ等）
+
+Project Settings → Enviroment Variables を開く  
+以下のように設定
+
+| Key                        | Value            |
+| -------------------------- | ---------------- |
+| VUE_APP_WebPush_PublicKey  | パブリックキー   |
+| VUE_APP_WebPush_PrivateKey | プライベートキー |
+
 ## コンソール側で初期化
 
 ```shell
 yarn install
+composer install #PHP用
 ```
 
 ### 実行

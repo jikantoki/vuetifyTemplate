@@ -1,10 +1,12 @@
 #Githubに共有したくないものを選ぶ
 /storage
 /.hidden
+*.env*
 
 .DS_Store
 /node_modules/*
 /dist
+/vendor
 
 
 # local env files
@@ -19,7 +21,6 @@ pnpm-debug.log*
 
 # Editor directories and files
 .idea
-.vscode
 *.suo
 *.ntvs*
 *.njsproj
