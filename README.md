@@ -83,6 +83,7 @@ Project Settings → Enviroment Variables を開く
 
 ```shell
 yarn install
+composer install #PHP用
 ```
 
 ### 実行
