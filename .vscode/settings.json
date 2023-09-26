@@ -16,5 +16,8 @@
   "vetur.format.defaultFormatter.ts": "vscode-typescript",
   "files.associations": {
     "iostream": "cpp"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
   }
 }

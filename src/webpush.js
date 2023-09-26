@@ -58,7 +58,6 @@ export default {
         publicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
         authToken: btoa(String.fromCharCode.apply(null, new Uint8Array(token)))
       }
-
       console.log(request)
       console.log('OK')
     })
