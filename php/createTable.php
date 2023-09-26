@@ -2,7 +2,7 @@
 
 require_once './settings.php';
 require_once './functions/database.php';
-require_once './functions/functions.php';
+require_once './functions/fuanctions.php';
 $test = SQLshowTable();
 dump($test);
 $test = SQLsearchTable('usersList');
