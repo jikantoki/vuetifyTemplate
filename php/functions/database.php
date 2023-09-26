@@ -1,5 +1,5 @@
 <?php
-echo $_SERVER['DOCUMENT_ROOT'];
+
 /**
  * 環境変数
  */
