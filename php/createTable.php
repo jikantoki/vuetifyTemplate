@@ -1,3 +1,4 @@
 <?php
 require_once './functions/database.php';
-SQLsearchTable('usersList');
+$test = SQLsearchTable('usersList');
+echo $test;
