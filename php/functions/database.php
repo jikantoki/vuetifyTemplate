@@ -117,7 +117,7 @@ function SQLcreateTable($tableName, $array)
  */
 function SQLinsert($table, $array)
 {
-  if (SQLsearchTable(($table))) {
+  if (!SQLsearchTable($table)) {
     return 1;
   }
   $keys = '';
