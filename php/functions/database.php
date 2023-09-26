@@ -22,30 +22,30 @@ function SQLConnect()
   }
 }
 
-function SQLselectTable($tableName)
+/**
+ * SQL文を実行
+ *
+ * @param [string] $sql
+ * @return object
+ */
+function SQL($sql)
 {
   $pdo = SQLConnect();
-  $stmt = $pdo->query('select * from "' . $tableName . '"');
+  $stmt = $pdo->query($sql);
   return $stmt->fetch();
+}
+
+function SQLselectTable($tableName)
+{
+  return SQL('select * from "' . $tableName . '"');
 }
 
 function SQLshowTable()
 {
-  $pdo = SQLConnect();
-  $stmt = $pdo->query('show tables');
-  return $stmt->fetch();
-}
-
-function SQLcreateTable($tableName)
-{
-  $pdo = SQLConnect();
-  $stmt = $pdo->query('show create table "' . $tableName . '"');
-  return $stmt->fetch();
+  return SQL('show tables');
 }
 
 function SQLsearchTable($tableName)
 {
-  $pdo = SQLConnect();
-  $stmt = $pdo->query('show tables like "' . $tableName . '"');
-  return $stmt->fetch();
+  return SQL('show tables like "' . $tableName . '"');
 }
