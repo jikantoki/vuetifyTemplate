@@ -3,7 +3,11 @@
 /**
  * 環境変数
  */
-require_once '../../env.php';
+try {
+  require_once '../../env.php';
+} catch (Exception $e) {
+  require_once '../env.php';
+}
 
 /**
  * SQLに接続して、そのPDOを返す
