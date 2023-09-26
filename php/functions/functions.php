@@ -11,9 +11,9 @@ function dump($var)
   try {
     var_dump($var);
   } catch (Exception $e) {
-    echo $e . '\n';
+    echo $e . "\n";
     return 1;
   }
-  echo '\n';
+  echo "\n";
   return 0;
 }
