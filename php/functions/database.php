@@ -72,8 +72,7 @@ function SQLshowTable()
 
 function SQLsearchTable($tableName)
 {
-  return SQL('show tables like ' . $tableName);
-  echo 'debug';
+  return SQL('show tables like "' . $tableName . '"');
 }
 
 /**
