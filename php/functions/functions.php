@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * エラーが出ず、最後に改行されるvar_dump
@@ -17,4 +17,3 @@ function dump($var)
   echo '\n';
   return 0;
 }
-$NAN = 1;
