@@ -2,7 +2,6 @@
 /storage
 /.hidden
 *.env*
-.htaccess
 
 .DS_Store
 /node_modules/*

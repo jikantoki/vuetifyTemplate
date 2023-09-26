@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on RewriteBase / RewriteRule ^$ vuetifyTemplate/php/ [L]
+  RewriteRule ^(.+)$ vuetifyTemplate/php/$1 [L]
+</IfModule>
