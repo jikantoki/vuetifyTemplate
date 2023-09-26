@@ -17,3 +17,4 @@ function dump($var)
   echo '\n';
   return 0;
 }
+$NAN = 1;

@@ -3,6 +3,7 @@
 require_once './settings.php';
 require_once './functions/database.php';
 require_once './functions/functions.php';
+echo $NAN;
 $test = SQLshowTable();
 dump($test);
 $test = SQLsearchTable('usersList');
