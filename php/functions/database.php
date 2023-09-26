@@ -124,7 +124,7 @@ function SQLinsert($table, $array)
   $values = '';
   foreach ($array as $key => $val) {
     $keys = $keys . $key . ',';
-    $values = $values . $val . ',';
+    $values = $values . '"' . $val . '"' . ',';
   }
   $keys = mb_substr($keys, 0, -1);
   $values = mb_substr($values, 0, -1);
