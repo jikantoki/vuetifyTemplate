@@ -25,23 +25,27 @@ function SQLConnect()
 function SQLselectTable($tableName)
 {
   $pdo = SQLConnect();
-  return $pdo->query('select * from "' . $tableName . '"');
+  $stmt = $pdo->query('select * from "' . $tableName . '"');
+  return $stmt->fetch();
 }
 
 function SQLshowTable()
 {
   $pdo = SQLConnect();
-  return $pdo->query('show tables');
+  $stmt = $pdo->query('show tables');
+  return $stmt->fetch();
 }
 
 function SQLcreateTable($tableName)
 {
   $pdo = SQLConnect();
-  return $pdo->query('show create table "' . $tableName . '"');
+  $stmt = $pdo->query('show create table "' . $tableName . '"');
+  return $stmt->fetch();
 }
 
 function SQLsearchTable($tableName)
 {
   $pdo = SQLConnect();
-  return $pdo->query('show tables like "' . $tableName . '"');
+  $stmt = $pdo->query('show tables like "' . $tableName . '"');
+  return $stmt->fetch();
 }
