@@ -1,4 +1,2 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine on RewriteBase / RewriteRule ^$ php/ [L] RewriteRule ^(.+)$
-  php/$1 [L]
-</IfModule>
+RewriteEngine on RewriteBase / RewriteRule ^$ php/ [L] RewriteRule ^(.+)$ php/$1
+[L]
