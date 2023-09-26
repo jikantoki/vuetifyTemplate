@@ -1,12 +1,13 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
+require_once '../.env.php';
 
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
 
-const VAPID_SUBJECT = 'ここにあなたのWebサイトのURL（http://localhost:8080/ など）';
-const PUBLIC_KEY = '公開鍵（ https://web-push-codelab.glitch.me/ で取得したもの ）';
-const PRIVATE_KEY = '秘密鍵（ https://web-push-codelab.glitch.me/ で取得したもの ）';
+const VAPID_SUBJECT = 'dev.vuetemp.enoki.xyz';
+const PUBLIC_KEY = VUE_APP_WebPush_PublicKey;
+const PRIVATE_KEY = VUE_APP_WebPush_PrivateKey;
 
 // push通知認証用のデータ
 $subscription = Subscription::create([

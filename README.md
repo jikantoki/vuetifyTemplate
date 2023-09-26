@@ -88,11 +88,22 @@ Project Settings → Enviroment Variables を開く
 1. API用のドメインをクライアント側（Vercel等）とは別で用意する
 2. このリポジトリのphpフォルダをドメインのルートにする（.htaccess等で）
 3. （準備中！！！）にAPI用のドメインを記述
-4. リポジトリのルートから見た/.env.phpに以下の記述をする
+4. リポジトリのルートから見た/env.phpに以下の記述をする
 
 ```php
+<?php
 define('VUE_APP_WebPush_PublicKey', 'パブリックキー');
 define('VUE_APP_WebPush_PrivateKey', 'プライベートキー');
+define('WebPush_URL', 'プッシュしたいURL');
+define('WebPush_URL_dev', 'プッシュしたいURL（開発用）');
+define('WebPush_Browser_EndPoint', 'ブラウザコンソールに表示されているエンドポイント');
+define('WebPush_Browser_PublicKey', 'ブラウザコンソールに表示されている公開鍵');
+define('WebPush_Browser_authToken', 'ブラウザコンソールに表示されているトークン');
+
+//以下、開発用で別URLを使う場合（使わない場合は本番用をコピペ）
+define('WebPush_Browser_EndPoint_dev', '');
+define('WebPush_Browser_PublicKey_dev', '');
+define('WebPush_Browser_authToken_dev', '');
 ```
 
 ## コンソール側で初期化
