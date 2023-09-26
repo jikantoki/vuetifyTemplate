@@ -22,6 +22,7 @@
 <script>
 import mixins from '@/functions/mixins'
 import webpush from '@/webpush'
+
 export default {
   mixins: [mixins],
   data() {
@@ -30,6 +31,7 @@ export default {
   mounted() {
     webpush.set()
     console.log(process.env)
+    //database.set()
   },
   methods: {}
 }

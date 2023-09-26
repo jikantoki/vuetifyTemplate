@@ -73,12 +73,7 @@ VUE_APP_WebPush_PrivateKey=プライベートキーをコピー
 #### それ以外（Vercelデプロイ等）
 
 Project Settings → Enviroment Variables を開く  
-以下のように設定
-
-| Key                        | Value            |
-| -------------------------- | ---------------- |
-| VUE_APP_WebPush_PublicKey  | パブリックキー   |
-| VUE_APP_WebPush_PrivateKey | プライベートキー |
+上記.envファイルと同じ感じで設定
 
 ### PHPサーバーの用意
 
@@ -96,6 +91,8 @@ define('VUE_APP_WebPush_PublicKey', 'パブリックキー');
 define('VUE_APP_WebPush_PrivateKey', 'プライベートキー');
 define('WebPush_URL', 'プッシュしたいURL');
 define('WebPush_URL_dev', 'プッシュしたいURL（開発用）');
+
+//ここから先の情報は、ブラウザで通知を許可するタイミングで見れる
 define('WebPush_Browser_EndPoint', 'ブラウザコンソールに表示されているエンドポイント');
 define('WebPush_Browser_PublicKey', 'ブラウザコンソールに表示されている公開鍵');
 define('WebPush_Browser_authToken', 'ブラウザコンソールに表示されているトークン');
