@@ -13,7 +13,7 @@ require_once DIR_ROOT . '/env.php';
 function randomChar()
 {
   $words = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '_'];
-  return array_rand($words);
+  return $words[array_rand($words)];
 }
 /**
  * ランダムな文字列を生成
@@ -62,7 +62,7 @@ function SQL($sql)
 
 function SQLselectTable($tableName)
 {
-  return SQL('select * from "' . $tableName . '"');
+  return SQL('select * from ' . $tableName);
 }
 
 function SQLshowTable()
@@ -72,7 +72,7 @@ function SQLshowTable()
 
 function SQLsearchTable($tableName)
 {
-  return SQL('show tables like "' . $tableName . '"');
+  return SQL('show tables like ' . $tableName);
 }
 
 /**
@@ -146,7 +146,6 @@ function SQLfindEx($table, $key, $value, $func)
   if (is_string($value)) {
     $useValue = '"' . $value . '"';
   }
-  echo 'select * from ' . $table . ' where ' . $key . $func . $useValue;
   return SQL('select * from ' . $table . ' where ' . $key . $func . $useValue);
 }
 
