@@ -71,7 +71,7 @@ function SQLcreateTable($tableName, $array)
   }
   $array_word = '';
   foreach ($array as $key => $val) {
-    $array_word += $key . ' ' . $val . ',';
+    $array_word = $array_word . $key . ' ' . $val . ',';
   }
   $array_word = mb_substr($array_word, 0, -1);
   return SQL('create table ' . $tableName . ' (' . $array_word . ')');
