@@ -128,6 +128,7 @@ function SQLinsert($table, $array)
   }
   $keys = mb_substr($keys, 0, -1);
   $values = mb_substr($values, 0, -1);
+  echo 'insert into ' . $table . ' (' . $keys . ') values (' . $values . ')';
   return SQL('insert into ' . $table . ' (' . $keys . ') values (' . $values . ')');
 }
 
