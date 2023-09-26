@@ -3,7 +3,7 @@ echo $_SERVER['DOCUMENT_ROOT'];
 /**
  * 環境変数
  */
-require_once $_SERVER['DOCUMENT_ROOT'] . '/env.php';
+require_once DIR_ROOT . '/env.php';
 
 /**
  * SQLに接続して、そのPDOを返す
