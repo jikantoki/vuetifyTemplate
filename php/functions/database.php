@@ -182,3 +182,22 @@ function SQLmakeRandomId($table, $key)
   } while ($breakFlag == 0);
   return $random;
 }
+
+/**
+ * 二つの表を比較し、baseTableをjoinTableで拡張した表を作成
+ *
+ * @param [string] $baseTable ベースにするテーブル
+ * @param [string] $joinTable 拡張したい情報
+ * @param [string] $baseKey baseTableのキー
+ * @param [string] $joinKey 拡張テーブルのキー
+ * @param [string] $where 命令後のwhere句以降（whereは勝手に入ります）
+ * @return void
+ */
+function SQLjoin($baseTable, $joinTable, $baseKey, $joinKey, $where = null)
+{
+  $sql = 'select * from ' . $baseTable . ' left join ' . $joinTable . ' on ' . $baseKey . ' = ' . $joinKey;
+  if ($where) {
+    $sql = $sql . ' where ' . $where;
+  }
+  return SQL($sql);
+}
