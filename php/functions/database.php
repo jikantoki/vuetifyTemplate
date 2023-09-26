@@ -49,3 +49,30 @@ function SQLsearchTable($tableName)
 {
   return SQL('show tables like "' . $tableName . '"');
 }
+
+/**
+ * ## 新規テーブルの作成
+ * 既にテーブルが存在する場合は1を返す
+ *
+ * ### $arrayの使い方
+ * ```php
+ * $array = ['キーの名前1'=>'付けたい型','キーの名前2'=>'付けたい型'...];
+ * ```
+ * 型指定に使えるもの→int、float、varchar(自然数)、text、datetime
+ *
+ * @param [string] $tableName
+ * @param [object] $array
+ * @return void
+ */
+function SQLcreateTable($tableName, $array)
+{
+  if (SQLsearchTable(($tableName))) {
+    return 1;
+  }
+  $array_word = '';
+  foreach ($array as $key => $val) {
+    $array_word += $key . ' ' . $val . ',';
+  }
+  $array_word = mb_substr($array_word, 0, -1);
+  return SQL('create table ' . $tableName . ' (' . $array_word . ')');
+}
