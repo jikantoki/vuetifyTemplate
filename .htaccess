@@ -1,2 +1,0 @@
-RewriteEngine on RewriteBase / RewriteRule ^$ php/ [L] RewriteRule ^(.+)$ php/$1
-[L]
