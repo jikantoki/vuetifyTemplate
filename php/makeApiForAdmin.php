@@ -12,7 +12,7 @@ if ($availableApiList) {
   $apiToken = randomString(16);
   $apiAccessKey = randomString(16);
   $apiAccessKeyHashed = password_hash($apiAccessKey, PASSWORD_DEFAULT);
-  SQLinsert(API_LIST, [
+  echo SQLinsert(API_LIST, [
     API_SECRET_ID => $rand,
     'apiId' => $rand,
     'apiToken' => $apiToken,
