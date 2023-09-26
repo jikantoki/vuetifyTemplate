@@ -7,6 +7,7 @@ Vuetifyを簡単にインストールしてすぐ使うためのテンプレー�
 ## 前提
 
 Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
+デプロイ先はVercelを想定してるけど多分どこでも動きます
 
 ## INCLUDED
 
@@ -78,6 +79,21 @@ Project Settings → Enviroment Variables を開く
 | -------------------------- | ---------------- |
 | VUE_APP_WebPush_PublicKey  | パブリックキー   |
 | VUE_APP_WebPush_PrivateKey | プライベートキー |
+
+### PHPサーバーの用意
+
+サーバーサイドはPHPで開発しているため、一部処理を実行するにはPHPサーバーの用意が必要です  
+とりあえずレンタルサーバーでも借りれば実行できます
+
+1. API用のドメインをクライアント側（Vercel等）とは別で用意する
+2. このリポジトリのphpフォルダをドメインのルートにする（.htaccess等で）
+3. （準備中！！！）にAPI用のドメインを記述
+4. リポジトリのルートから見た/.env.phpに以下の記述をする
+
+```php
+define('VUE_APP_WebPush_PublicKey', 'パブリックキー');
+define('VUE_APP_WebPush_PrivateKey', 'プライベートキー');
+```
 
 ## コンソール側で初期化
 
