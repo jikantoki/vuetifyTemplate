@@ -18,6 +18,7 @@
     .text-h1 簡単で、美しい。
     hr
     .text VueTempで理想の作業効率化
+    p {{ astatus }}
 </template>
 
 <script>
@@ -27,12 +28,20 @@ import webpush from '@/webpush'
 export default {
   mixins: [mixins],
   data() {
-    return {}
+    return {
+      astatus: ''
+    }
   },
   mounted() {},
   methods: {
-    getRequest: () => {
-      webpush.get(true)
+    getRequest: function () {
+      webpush
+        .get(true)
+        .then((e) => {
+          console.log(e)
+          this.astatus = e
+        })
+        .catch()
     }
   }
 }
