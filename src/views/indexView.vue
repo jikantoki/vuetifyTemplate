@@ -11,6 +11,8 @@
       v-btn(@click="pushForMe()") 通知送信テスト
       v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
       v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
+    .input-area
+      v-text-field.my-4(label="送りたい通知内容を入力" v-model="notificationText")
 .wrap
   v-card.content(elevation="4")
     .text-h1 簡単で、美しい。
@@ -27,7 +29,8 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      astatus: ''
+      astatus: '',
+      notificationText: '通知テスト12345🤓'
     }
   },
   mounted() {},
@@ -54,7 +57,7 @@ export default {
         endpoint: keys.endpoint,
         publickey: keys.publicKey,
         authtoken: keys.authToken,
-        message: '通知テスト'
+        message: this.notificationText
       })
         .then((e) => {
           console.log(e)
