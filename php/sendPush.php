@@ -38,6 +38,7 @@ if ($report->isSuccess()) {
   echo '送信成功！';
 } else {
   echo '送信失敗';
+  var_dump($report);
   //この場合は無効なトークンを持っている場合が多い
   //リセットした方がいい
 }
