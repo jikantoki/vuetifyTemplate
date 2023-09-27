@@ -7,8 +7,8 @@
     hr
     .text-h6 Vuetifyを簡単に構築できるサンプル
     .btns
-      v-btn(@click="pushForMe()") 通知を許可する
-      v-btn(@click="getRequest()") 通知送信テスト
+      v-btn(@click="getRequest()") 通知を許可する
+      v-btn(@click="pushForMe()") 通知送信テスト
       v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
       v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
 .wrap
