@@ -7,13 +7,10 @@
     hr
     .text-h6 Vuetifyを簡単に構築できるサンプル
     .btns
-      v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
-      v-btn(@click="console.log(setCookie('test', '001'))") Add Cookie
-      v-btn(@click="console.log(getAllCookie())") Get Cookie
-      v-btn(@click="push('Hello')") Push notification
+      v-btn(@click="pushForMe()") 通知を許可する
+      v-btn(@click="getRequest()") 通知送信テスト
       v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
-      v-btn(@click="getRequest()") Push Request
-      v-btn(@click="pushForMe()") Push For Me!
+      v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
 .wrap
   v-card.content(elevation="4")
     .text-h1 簡単で、美しい。
@@ -50,6 +47,9 @@ export default {
     pushForMe: async function () {
       const keys = await webpush.get()
       console.log(keys)
+      if (!keys) {
+        return false
+      }
       this.sendAjax('https://api.vuetemp.enoki.xyz/sendPushForMe.php', {
         endpoint: keys.endpoint,
         publickey: keys.publicKey,
@@ -62,6 +62,7 @@ export default {
         .catch((e) => {
           console.log(e)
         })
+      return true
     }
   }
 }
