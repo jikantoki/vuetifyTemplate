@@ -21,18 +21,13 @@
 
 <script>
 import mixins from '@/functions/mixins'
-import webpush from '@/webpush'
 
 export default {
   mixins: [mixins],
   data() {
     return {}
   },
-  mounted() {
-    webpush.set()
-    console.log(process.env)
-    //database.set()
-  },
+  mounted() {},
   methods: {}
 }
 </script>
