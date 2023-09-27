@@ -91,17 +91,28 @@ define('VUE_APP_WebPush_PublicKey', 'パブリックキー');
 define('VUE_APP_WebPush_PrivateKey', 'プライベートキー');
 define('WebPush_URL', 'プッシュしたいURL');
 define('WebPush_URL_dev', 'プッシュしたいURL（開発用）');
-
-//ここから先の情報は、ブラウザで通知を許可するタイミングで見れる
-define('WebPush_Browser_EndPoint', 'ブラウザコンソールに表示されているエンドポイント');
-define('WebPush_Browser_PublicKey', 'ブラウザコンソールに表示されている公開鍵');
-define('WebPush_Browser_authToken', 'ブラウザコンソールに表示されているトークン');
-
-//以下、開発用で別URLを使う場合（使わない場合は本番用をコピペ）
-define('WebPush_Browser_EndPoint_dev', '');
-define('WebPush_Browser_PublicKey_dev', '');
-define('WebPush_Browser_authToken_dev', '');
 ```
+
+### MySQLの用意
+
+後で書く
+
+### デフォルトAPIのトークンを用意する
+
+このプログラムは独自のアクセストークンを利用してAPIにアクセスします。  
+そのため、初回APIを登録する作業が必要です。
+
+1. セットアップしたAPI用サーバーの/makeApiForAdmin.phpにアクセス
+2. 初回アクセス時のみMySQLで登録作業が行われるので、出てきた画面の内容をコピー
+3. 以後、その値を使ってAPIを操作できます
+
+**忘れたらリセット**するしかないので注意！（一部データは暗号化されており、管理者でも確認できません）
+
+#### デフォルトAPIトークンのリセット方法
+
+1. MySQLのapi_listテーブルのsecretId='default'を削除
+2. 初回登録と同じ感じでやる
+3. データベースに再度defaultが追加されていることを確認
 
 ## コンソール側で初期化
 
