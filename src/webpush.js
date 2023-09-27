@@ -98,13 +98,15 @@ const getRequest = async (listenFlag = false) => {
   if (permission === 'granted' || listenFlag) {
     try {
       //スマホで特定の環境だと止まる？？？
-      Notification.requestPermission()
-        .then((e) => {
-          console.log(e)
-        })
-        .catch((e) => {
-          console.log(e)
-        })
+      if (permission !== 'granted') {
+        Notification.requestPermission()
+          .then((e) => {
+            console.log(e)
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      }
       subscription = await window.sw.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey
