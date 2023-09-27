@@ -81,7 +81,10 @@ self.addEventListener('push', function (event) {
   let option = notificationDataObj.option
   event.waitUntil(self.registration.showNotification(title, option))
 
-  /* notification example */
+  /**
+   * notification example
+   * テスト時はこれコピーして使う
+   */
   /*
     {
       "title": "通知テスト",
