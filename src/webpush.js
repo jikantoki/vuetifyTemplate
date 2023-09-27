@@ -97,10 +97,12 @@ const getRequest = async (listenFlag = false) => {
   let permission = Notification.permission
   if (permission === 'granted' || listenFlag) {
     try {
+      alert('start')
       subscription = await window.sw.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey
       })
+      alert('end')
     } catch (e) {
       //エラーで取得不可
       console.warn(e)
