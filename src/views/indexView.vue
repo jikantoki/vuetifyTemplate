@@ -12,6 +12,7 @@
       v-btn(@click="console.log(getAllCookie())") Get Cookie
       v-btn(@click="push('Hello')") Push notification
       v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
+      v-btn(@click="getRequest()") Push Request
 .wrap
   v-card.content(elevation="4")
     .text-h1 簡単で、美しい。
@@ -21,6 +22,7 @@
 
 <script>
 import mixins from '@/functions/mixins'
+import webpush from '@/webpush'
 
 export default {
   mixins: [mixins],
@@ -28,7 +30,11 @@ export default {
     return {}
   },
   mounted() {},
-  methods: {}
+  methods: {
+    getRequest: () => {
+      webpush.get(true)
+    }
+  }
 }
 </script>
 

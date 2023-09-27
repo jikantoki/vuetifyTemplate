@@ -37,7 +37,12 @@ export default {
             //return 'allowed
           }
           const request = await getRequest()
-          resolve(request)
+
+          if (request) {
+            resolve(request)
+          } else {
+            reject(false)
+          }
         } else {
           reject(false)
         }
@@ -45,8 +50,13 @@ export default {
     })
   },
 
-  get: async () => {
-    return await getRequest()
+  /**
+   * プッシュ通知の許可が出ているか確認し、許可ならrequestに必要な鍵を返す
+   * @param {bool} listenFlag Trueの場合はリクエストを出す、Falseなら現在の権限に委ねる
+   * @returns object
+   */
+  get: async (listenFlag) => {
+    return await getRequest(listenFlag)
   }
 }
 
@@ -70,9 +80,10 @@ function urlB64ToUint8Array(base64String) {
 /**
  * リクエストを取得する
  * サービスワーカー登録済みならsetを使わずgetRequestで十分
+ * @param ListenFlag {string} Trueの場合はユーザーに尋ねる、falseの場合は権限に委ねる
  * @returns リクエスト
  */
-const getRequest = async () => {
+const getRequest = async (listenFlag = false) => {
   /**
    * 共通変数
    */
@@ -82,14 +93,22 @@ const getRequest = async () => {
 
   // push managerにサーバーキーを渡し、トークンを取得
   let subscription = undefined
-  try {
-    subscription = await window.sw.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey
-    })
-  } catch (e) {
-    //エラーで取得不可
-    console.warn(e)
+
+  let permission = Notification.permission
+  if (permission === 'granted' || listenFlag) {
+    try {
+      subscription = await window.sw.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey
+      })
+    } catch (e) {
+      //エラーで取得不可
+      console.warn(e)
+      return false
+    }
+  } else {
+    //Permission denied
+    console.warn('Permission denied')
     return false
   }
 
