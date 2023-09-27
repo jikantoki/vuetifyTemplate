@@ -11,9 +11,9 @@ const PRIVATE_KEY = VUE_APP_WebPush_PrivateKey;
 
 // push通知認証用のデータ
 $subscription = Subscription::create([
-  'endpoint' => WebPush_Browser_EndPoint,
-  'publicKey' => WebPush_Browser_PublicKey,
-  'authToken' => WebPush_Browser_authToken,
+  'endpoint' => $_GET['endpoint'],
+  'publicKey' => $_GET['publickey'],
+  'authToken' => $_GET['authtoken'],
 ]);
 
 // ブラウザに認証させる
@@ -29,7 +29,20 @@ $webPush = new WebPush($auth);
 
 $report = $webPush->sendOneNotification(
   $subscription,
-  'push通知の本文です'
+  json_encode(
+    array(
+      'title' => '通知確認用',
+      'option' => array(
+        'body' => $_GET['message'],
+        'actions' => [
+          array(
+            'action' => 'test',
+            'title' => 'アクションボタン'
+          )
+        ]
+      )
+    )
+  )
 );
 
 $endpoint = $report->getRequest()->getUri()->__toString();

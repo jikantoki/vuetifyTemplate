@@ -7,28 +7,64 @@
     hr
     .text-h6 Vuetifyを簡単に構築できるサンプル
     .btns
-      v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
-      v-btn(@click="console.log(setCookie('test', '001'))") Add Cookie
-      v-btn(@click="console.log(getAllCookie())") Get Cookie
-      v-btn(@click="push('Hello')") Push notification
+      v-btn(@click="pushForMe()") 通知を許可する
+      v-btn(@click="getRequest()") 通知送信テスト
       v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
+      v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
 .wrap
   v-card.content(elevation="4")
     .text-h1 簡単で、美しい。
     hr
     .text VueTempで理想の作業効率化
+    p {{ astatus }}
 </template>
 
 <script>
 import mixins from '@/functions/mixins'
+import webpush from '@/webpush'
 
 export default {
   mixins: [mixins],
   data() {
-    return {}
+    return {
+      astatus: ''
+    }
   },
   mounted() {},
-  methods: {}
+  methods: {
+    getRequest: function () {
+      this.astatus = 'wait...'
+      webpush
+        .get(true)
+        .then((e) => {
+          console.log(e)
+          this.astatus = e
+        })
+        .catch((e) => {
+          this.astatus = e
+        })
+    },
+    pushForMe: async function () {
+      const keys = await webpush.get()
+      console.log(keys)
+      if (!keys) {
+        return false
+      }
+      this.sendAjax('https://api.vuetemp.enoki.xyz/sendPushForMe.php', {
+        endpoint: keys.endpoint,
+        publickey: keys.publicKey,
+        authtoken: keys.authToken,
+        message: '通知テスト'
+      })
+        .then((e) => {
+          console.log(e)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      return true
+    }
+  }
 }
 </script>
 

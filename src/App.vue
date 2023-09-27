@@ -71,9 +71,14 @@ export default {
         console.warn(e)
       })
     */
-    webpush.set().then((e) => {
-      console.log(e)
-    })
+    webpush
+      .set()
+      .then((e) => {
+        console.log(e)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   },
   /**
    * ページ離脱時にやりたい事

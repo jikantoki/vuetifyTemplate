@@ -14,14 +14,14 @@ self.addEventListener('install', function (event) {
   )
 })
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (/*event*/) {
   /*console.log('sw event: fetch called')*/
-
+  /*
   event.respondWith(
     caches.match(event.request).then(function (response) {
       return response ? response : fetch(event.request)
     })
-  )
+  )*/
 })
 
 self.addEventListener('notificationclick', function (event) {
@@ -81,7 +81,10 @@ self.addEventListener('push', function (event) {
   let option = notificationDataObj.option
   event.waitUntil(self.registration.showNotification(title, option))
 
-  /* notification example */
+  /**
+   * notification example
+   * テスト時はこれコピーして使う
+   */
   /*
     {
       "title": "通知テスト",
@@ -102,4 +105,7 @@ self.addEventListener('push', function (event) {
       }
     }
    */
+})
+self.addEventListener('pushsubscriptionchange', (e) => {
+  console.log(e)
 })

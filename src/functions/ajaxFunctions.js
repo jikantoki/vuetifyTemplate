@@ -83,7 +83,7 @@ export default {
       if (obj) {
         const objKeys = Object.keys(obj)
         objKeys.forEach((key) => {
-          const encoded = encodeURI(obj[key])
+          const encoded = encodeURIComponent(obj[key])
           params += `${key}=${encoded}&`
         })
         params = params.slice(0, -1)
