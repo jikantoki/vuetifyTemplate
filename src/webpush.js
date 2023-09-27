@@ -78,7 +78,7 @@ function urlB64ToUint8Array(base64String) {
 }
 
 /**
- * リクエストを取得する
+ * ## リクエストを取得する
  * サービスワーカー登録済みならsetを使わずgetRequestで十分
  * @param ListenFlag {string} Trueの場合はユーザーに尋ねる、falseの場合は権限に委ねる
  * @returns リクエスト
@@ -93,12 +93,13 @@ const getRequest = async (listenFlag = false) => {
 
   // push managerにサーバーキーを渡し、トークンを取得
   let subscription = undefined
-
   let permission = Notification.permission
   if (permission === 'granted' || listenFlag) {
     if (permission !== 'granted' && listenFlag) {
-      Notification.requestPermission()
-        .then(() => {})
+      await Notification.requestPermission()
+        .then(async function () {
+          return getRequest()
+        })
         .catch(() => {
           //error
           return false
