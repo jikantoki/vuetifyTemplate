@@ -53,7 +53,8 @@ export default {
       this.sendAjax('https://api.vuetemp.enoki.xyz/sendPushForMe.php', {
         endpoint: keys.endpoint,
         publickey: keys.publicKey,
-        authtoken: keys.authToken
+        authtoken: keys.authToken,
+        message: '通知テスト'
       })
         .then((e) => {
           console.log(e)

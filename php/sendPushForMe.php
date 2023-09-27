@@ -29,7 +29,20 @@ $webPush = new WebPush($auth);
 
 $report = $webPush->sendOneNotification(
   $subscription,
-  'push通知の本文です'
+  json_encode(
+    array(
+      'title' => '通知確認用',
+      'option' => array(
+        'body' => $_GET['message'],
+        'actions' => [
+          array(
+            'action' => 'test',
+            'title' => 'アクションボタン'
+          )
+        ]
+      )
+    )
+  )
 );
 
 $endpoint = $report->getRequest()->getUri()->__toString();
