@@ -51,6 +51,10 @@ WebPush https://tech.excite.co.jp/entry/2021/06/30/104213
 
 ## Setup
 
+このプログラムは、表示用サーバーと処理用サーバーの2つが必要です
+
+### 表示用サーバー
+
 ```shell
 git clone git@github.com:jikantoki/vuetifyTemplate.git
 echo 'これだけでセットアップ完了！'
@@ -75,7 +79,7 @@ VUE_APP_WebPush_PrivateKey=プライベートキーをコピー
 Project Settings → Enviroment Variables を開く  
 上記.envファイルと同じ感じで設定
 
-### PHPサーバーの用意
+### PHPサーバー（内部処理用）
 
 サーバーサイドはPHPで開発しているため、一部処理を実行するにはPHPサーバーの用意が必要です  
 とりあえずレンタルサーバーでも借りれば実行できます
