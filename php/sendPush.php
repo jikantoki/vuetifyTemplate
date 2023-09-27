@@ -1,18 +1,19 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
+require_once '../env.php';
 
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
 
-const VAPID_SUBJECT = 'ここにあなたのWebサイトのURL（http://localhost:8080/ など）';
-const PUBLIC_KEY = '公開鍵（ https://web-push-codelab.glitch.me/ で取得したもの ）';
-const PRIVATE_KEY = '秘密鍵（ https://web-push-codelab.glitch.me/ で取得したもの ）';
+const VAPID_SUBJECT = 'dev.vuetemp.enoki.xyz';
+const PUBLIC_KEY = VUE_APP_WebPush_PublicKey;
+const PRIVATE_KEY = VUE_APP_WebPush_PrivateKey;
 
 // push通知認証用のデータ
 $subscription = Subscription::create([
-    'endpoint' => 'ブラウザのコンソールで表示されていた「endpoint」',
-    'publicKey' => 'ブラウザのコンソールで表示されていた「publicKey」',
-    'authToken' => 'ブラウザのコンソールで表示されていた「authToken」',
+    'endpoint' => WebPush_Browser_EndPoint,
+    'publicKey' => WebPush_Browser_PublicKey,
+    'authToken' => WebPush_Browser_authToken,
 ]);
 
 // ブラウザに認証させる
@@ -34,7 +35,9 @@ $report = $webPush->sendOneNotification(
 $endpoint = $report->getRequest()->getUri()->__toString();
 
 if ($report->isSuccess()) {
-    echo '送信成功ヽ(=´▽`=)ﾉ';
+    echo '送信成功！';
 } else {
-    echo '送信失敗(´；ω；｀)';
+    echo '送信失敗';
+    //この場合は無効なトークンを持っている場合が多い
+    //リセットした方がいい
 }

@@ -1,87 +1,105 @@
 export default {
-  set: set
+  /**
+   * WebPushを許可する仕組み
+   * ```js
+   * set().then((e) => {
+   *   console.log(e) //requestが返り値
+   * }).catch((e) => {
+   *   console.log(e) //エラー理由
+   * })
+   * ```
+   * @returns promise
+   */
+  set: async () => {
+    return new Promise((resolve, reject) => {
+      /**
+       * サービスワーカーの登録
+       */
+      self.addEventListener('load', async () => {
+        if ('serviceWorker' in navigator) {
+          window.sw = await navigator.serviceWorker.register('/sw.js', {
+            scope: '/'
+          })
+        }
+        if ('Notification' in window) {
+          let permission = Notification.permission
+
+          if (permission === 'denied') {
+            console.warn(
+              'Push通知が拒否されているようです。ブラウザの設定からPush通知を有効化してください'
+            )
+            reject(false)
+          }
+
+          if (permission === 'granted') {
+            console.log('すでにWebPushを許可済みです')
+            //ここでreturnしてもシステム上問題ないが、トークンをconsole.logしたいので続行
+            //return 'allowed
+          }
+          const request = await getRequest()
+          resolve(request)
+        } else {
+          reject(false)
+        }
+      })
+    })
+  },
+
+  get: async () => {
+    return await getRequest()
+  }
 }
-const set = () => {
+
+/**
+ * トークンを変換するときに使うロジック
+ * @param {*} base64String
+ */
+function urlB64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4)
+  const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/')
+
+  const rawData = window.atob(base64)
+  const outputArray = new Uint8Array(rawData.length)
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i)
+  }
+  return outputArray
+}
+
+/**
+ * リクエストを取得する
+ * サービスワーカー登録済みならsetを使わずgetRequestで十分
+ * @returns リクエスト
+ */
+const getRequest = async () => {
   /**
    * 共通変数
    */
-  const PUBLIC_KEY = process.env.VUE_APP_WebPush_PrivateKey
+  const PUBLIC_KEY = process.env.VUE_APP_WebPush_PublicKey
+  // 取得したPublicKeyを「UInt8Array」形式に変換する
+  const applicationServerKey = urlB64ToUint8Array(PUBLIC_KEY)
 
-  /**
-   * サービスワーカーの登録
-   */
-  self.addEventListener('load', async () => {
-    if ('serviceWorker' in navigator) {
-      window.sw = await navigator.serviceWorker.register('/service-worker.js', {
-        scope: '/'
-      })
-    }
-  })
-
-  /**
-   * WebPushを許可する仕組み
-   */
-  async function allowWebPush() {
-    if ('Notification' in window) {
-      let permission = Notification.permission
-
-      if (permission === 'denied') {
-        alert(
-          'Push通知が拒否されているようです。ブラウザの設定からPush通知を有効化してください'
-        )
-        return false
-      }
-
-      if (permission === 'granted') {
-        alert('すでにWebPushを許可済みです')
-        return false
-      }
-    }
-    // 取得したPublicKeyを「UInt8Array」形式に変換する
-    const applicationServerKey = urlB64ToUint8Array(PUBLIC_KEY)
-
-    // push managerにサーバーキーを渡し、トークンを取得
-    let subscription = undefined
-    try {
-      subscription = await window.sw.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey
-      })
-    } catch (e) {
-      alert(
-        'Push通知機能が拒否されたか、エラーが発生したか、iPhoneでの実行かが原因でPush通知は送信されません。'
-      )
-      return false
-    }
-
-    // 必要なトークンを変換して取得（これが重要！！！）
-    const key = subscription.getKey('p256dh')
-    const token = subscription.getKey('auth')
-    const request = {
-      endpoint: subscription.endpoint,
-      publicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
-      authToken: btoa(String.fromCharCode.apply(null, new Uint8Array(token)))
-    }
-
-    console.log(request)
+  // push managerにサーバーキーを渡し、トークンを取得
+  let subscription = undefined
+  try {
+    subscription = await window.sw.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey
+    })
+  } catch (e) {
+    //エラーで取得不可
+    console.warn(e)
+    return false
   }
 
-  /**
-   * トークンを変換するときに使うロジック
-   * @param {*} base64String
-   */
-  function urlB64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - (base64String.length % 4)) % 4)
-    const base64 = (base64String + padding)
-      .replace(/\-/g, '+')
-      .replace(/_/g, '/')
-
-    const rawData = window.atob(base64)
-    const outputArray = new Uint8Array(rawData.length)
-
-    for (let i = 0; i < rawData.length; ++i) {
-      outputArray[i] = rawData.charCodeAt(i)
-    }
-    return outputArray
+  // 必要なトークンを変換して取得（これが重要！！！）
+  const key = subscription.getKey('p256dh')
+  const token = subscription.getKey('auth')
+  const request = {
+    endpoint: subscription.endpoint,
+    publicKey: btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
+    authToken: btoa(String.fromCharCode.apply(null, new Uint8Array(token)))
   }
+  return request
 }

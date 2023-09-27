@@ -18,6 +18,7 @@ import commonHeader from '@/components/common/commonHeader.vue'
 import commonFooter from '@/components/common/commonFooter.vue'
 import commonCookieGetPermission from '@/components/common/commonCookieGetPermission'
 import mixins from '@/functions/mixins'
+import webpush from '@/webpush'
 
 export default {
   /**
@@ -51,7 +52,7 @@ export default {
    */
   mounted() {
     PackageJson.name = Functions.ifEnglishStartUpper(PackageJson.name)
-
+    /*
     this.sendAjax('/api/test/object.html', {
       goodbye: 'バイバ～イ!yeah',
       sayMeow: 'みゃお'
@@ -69,6 +70,10 @@ export default {
       .catch((e) => {
         console.warn(e)
       })
+    */
+    webpush.set().then((e) => {
+      console.log(e)
+    })
   },
   /**
    * ページ離脱時にやりたい事

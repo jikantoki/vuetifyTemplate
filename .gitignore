@@ -2,11 +2,13 @@
 /storage
 /.hidden
 *.env*
+env.php
 
 .DS_Store
 /node_modules/*
 /dist
 /vendor
+.htaccess
 
 
 # local env files

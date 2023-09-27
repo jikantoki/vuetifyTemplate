@@ -7,6 +7,7 @@ Vuetifyを簡単にインストールしてすぐ使うためのテンプレー�
 ## 前提
 
 Node.jsとnpmとyarnくらい入ってるよね！（投げやり）
+デプロイ先はVercelを想定してるけど多分どこでも動きます
 
 ## INCLUDED
 
@@ -50,6 +51,10 @@ WebPush https://tech.excite.co.jp/entry/2021/06/30/104213
 
 ## Setup
 
+このプログラムは、表示用サーバーと処理用サーバーの2つが必要です
+
+### 表示用サーバー
+
 ```shell
 git clone git@github.com:jikantoki/vuetifyTemplate.git
 echo 'これだけでセットアップ完了！'
@@ -72,12 +77,46 @@ VUE_APP_WebPush_PrivateKey=プライベートキーをコピー
 #### それ以外（Vercelデプロイ等）
 
 Project Settings → Enviroment Variables を開く  
-以下のように設定
+上記.envファイルと同じ感じで設定
 
-| Key                        | Value            |
-| -------------------------- | ---------------- |
-| VUE_APP_WebPush_PublicKey  | パブリックキー   |
-| VUE_APP_WebPush_PrivateKey | プライベートキー |
+### PHPサーバー（内部処理用）
+
+サーバーサイドはPHPで開発しているため、一部処理を実行するにはPHPサーバーの用意が必要です  
+とりあえずレンタルサーバーでも借りれば実行できます
+
+1. API用のドメインをクライアント側（Vercel等）とは別で用意する
+2. このリポジトリのphpフォルダをドメインのルートにする（.htaccess等で）
+3. （準備中！！！）にAPI用のドメインを記述
+4. リポジトリのルートから見た/env.phpに以下の記述をする
+
+```php
+<?php
+define('VUE_APP_WebPush_PublicKey', 'パブリックキー');
+define('VUE_APP_WebPush_PrivateKey', 'プライベートキー');
+define('WebPush_URL', 'プッシュしたいURL');
+define('WebPush_URL_dev', 'プッシュしたいURL（開発用）');
+```
+
+### MySQLの用意
+
+後で書く
+
+### デフォルトAPIのトークンを用意する
+
+このプログラムは独自のアクセストークンを利用してAPIにアクセスします。  
+そのため、初回APIを登録する作業が必要です。
+
+1. セットアップしたAPI用サーバーの/makeApiForAdmin.phpにアクセス
+2. 初回アクセス時のみMySQLで登録作業が行われるので、出てきた画面の内容をコピー
+3. 以後、その値を使ってAPIを操作できます
+
+**忘れたらリセット**するしかないので注意！（一部データは暗号化されており、管理者でも確認できません）
+
+#### デフォルトAPIトークンのリセット方法
+
+1. MySQLのapi_listテーブルのsecretId='default'を削除
+2. 初回登録と同じ感じでやる
+3. データベースに再度defaultが追加されていることを確認
 
 ## コンソール側で初期化
 

@@ -44,7 +44,17 @@ self.addEventListener('push', function (event) {
    * }
    * ```
    */
-  let notificationDataObj = event.data.json()
+  let notificationDataObj
+  try {
+    notificationDataObj = event.data.json()
+  } catch {
+    notificationDataObj = {
+      title: 'Webサイトからの通知',
+      option: {
+        body: event.data.text()
+      }
+    }
+  }
   /**
    * titleの中身はstringな必要があります
    */
@@ -69,7 +79,6 @@ self.addEventListener('push', function (event) {
    * ```
    */
   let option = notificationDataObj.option
-  console.log(option)
   event.waitUntil(self.registration.showNotification(title, option))
 
   /* notification example */

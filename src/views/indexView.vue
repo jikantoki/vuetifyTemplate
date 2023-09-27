@@ -21,6 +21,7 @@
 
 <script>
 import mixins from '@/functions/mixins'
+
 export default {
   mixins: [mixins],
   data() {
