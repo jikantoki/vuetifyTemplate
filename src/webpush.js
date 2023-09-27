@@ -104,15 +104,19 @@ const getRequest = async (listenFlag = false) => {
           return false
         })
     }
-    try {
-      //スマホで特定の環境だと止まる？？？
-      subscription = await window.sw.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey
-      })
-    } catch (e) {
-      //エラーで取得不可
-      console.warn(e)
+    if (permission === 'granted') {
+      try {
+        //スマホで特定の環境だと止まる？？？
+        subscription = await window.sw.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey
+        })
+      } catch (e) {
+        //エラーで取得不可
+        console.warn(e)
+        return false
+      }
+    } else {
       return false
     }
   } else {
