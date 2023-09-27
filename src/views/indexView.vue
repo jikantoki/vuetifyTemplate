@@ -41,7 +41,9 @@ export default {
           console.log(e)
           this.astatus = e
         })
-        .catch()
+        .catch((e) => {
+          this.astatus = e
+        })
     }
   }
 }
