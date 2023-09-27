@@ -35,6 +35,7 @@ export default {
   mounted() {},
   methods: {
     getRequest: function () {
+      this.astatus = 'wait...'
       webpush
         .get(true)
         .then((e) => {
