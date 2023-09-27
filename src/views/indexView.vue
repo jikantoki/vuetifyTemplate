@@ -13,6 +13,7 @@
       v-btn(@click="push('Hello')") Push notification
       v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
       v-btn(@click="getRequest()") Push Request
+      v-btn(@click="pushForMe()") Push For Me!
 .wrap
   v-card.content(elevation="4")
     .text-h1 簡単で、美しい。
@@ -44,6 +45,21 @@ export default {
         })
         .catch((e) => {
           this.astatus = e
+        })
+    },
+    pushForMe: async function () {
+      const keys = await webpush.get()
+      console.log(keys)
+      this.sendAjax('https://api.vuetemp.enoki.xyz/sendPushForMe.php', {
+        endpoint: keys.endpoint,
+        publickey: keys.publicKey,
+        authtoken: keys.authToken
+      })
+        .then((e) => {
+          console.log(e)
+        })
+        .catch((e) => {
+          console.log(e)
         })
     }
   }

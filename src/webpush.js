@@ -51,7 +51,8 @@ export default {
   },
 
   /**
-   * プッシュ通知の許可が出ているか確認し、許可ならrequestに必要な鍵を返す
+   * ## プッシュ通知の許可が出ているか確認し、許可ならrequestに必要な鍵を返す
+   * 要async / await
    * @param {bool} listenFlag Trueの場合はリクエストを出す、Falseなら現在の権限に委ねる
    * @returns object
    */

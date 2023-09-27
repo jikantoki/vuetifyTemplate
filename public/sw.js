@@ -14,14 +14,14 @@ self.addEventListener('install', function (event) {
   )
 })
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (/*event*/) {
   /*console.log('sw event: fetch called')*/
-
+  /*
   event.respondWith(
     caches.match(event.request).then(function (response) {
       return response ? response : fetch(event.request)
     })
-  )
+  )*/
 })
 
 self.addEventListener('notificationclick', function (event) {
