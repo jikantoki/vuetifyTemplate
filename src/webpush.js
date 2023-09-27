@@ -96,6 +96,14 @@ const getRequest = async (listenFlag = false) => {
 
   let permission = Notification.permission
   if (permission === 'granted' || listenFlag) {
+    if (permission !== 'granted' && listenFlag) {
+      Notification.requestPermission()
+        .then(() => {})
+        .catch(() => {
+          //error
+          return false
+        })
+    }
     try {
       //スマホで特定の環境だと止まる？？？
       subscription = await window.sw.pushManager.subscribe({
