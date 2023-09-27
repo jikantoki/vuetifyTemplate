@@ -106,3 +106,6 @@ self.addEventListener('push', function (event) {
     }
    */
 })
+self.addEventListener('pushsubscriptionchange', (e) => {
+  console.log(e)
+})
