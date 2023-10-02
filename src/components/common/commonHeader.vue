@@ -9,15 +9,17 @@ v-app-bar
 v-navigation-drawer.pa-0(v-model="drawer" fixed temporary)
   v-list(nav dense)
     v-item-group(v-model="group" active-class="deep-purple-text text--accent-4")
-      v-list-item.pa-4(link v-for="navigationItem in NavigationList" @click="a(navigationItem.url)")
-        .v-item
-          v-icon(style="opacity:0.7") {{ navigationItem.icon }}
-          p.nav {{ navigationItem.name }}
+      a.header-list(v-for="navigationItem in NavigationList" :href="navigationItem.url")
+        v-list-item.pa-4(link)
+          .v-item
+            v-icon(style="opacity:0.7") {{ navigationItem.icon }}
+            p.nav {{ navigationItem.name }}
       v-divider(style="opacity:0.3")
-      v-list-item.pa-4(link v-for="navigationItem in infoList" @click="a(navigationItem.url)")
-        .v-item
-          v-icon(style="opacity:0.7") {{ navigationItem.icon }}
-          p.nav {{ navigationItem.name }}
+      a.header-list(v-for="navigationItem in infoList" :href="navigationItem.url")
+        v-list-item.pa-4(link)
+          .v-item
+            v-icon(style="opacity:0.7") {{ navigationItem.icon }}
+            p.nav {{ navigationItem.name }}
       v-divider(style="opacity:0.3")
       v-list-item.pa-4
         .v-item
@@ -98,6 +100,24 @@ export default {
         case 'dark':
           this.isDarkTheme = true
           break
+      }
+    }
+    const vues = this
+    const aTags = document.querySelectorAll('a')
+    for (let count = 0; count < aTags.length; count++) {
+      if (aTags[count].href !== '') {
+        aTags[count].onclick = function () {
+          const now = new URL(window.location.href).host
+          const next = new URL(aTags[count].href).host
+          let to = aTags[count].href
+          if (now === next) {
+            const next = new URL(aTags[count].href)
+            to = next.pathname + next.hash + next.search
+          }
+          vues.a(to)
+          event.preventDefault()
+          return false
+        }
       }
     }
 
@@ -253,5 +273,9 @@ button {
 .inline {
   display: inline;
   vertical-align: middle;
+}
+.header-list {
+  text-decoration: none;
+  color: inherit;
 }
 </style>
