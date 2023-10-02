@@ -102,24 +102,6 @@ export default {
           break
       }
     }
-    const vues = this
-    const aTags = document.querySelectorAll('a')
-    for (let count = 0; count < aTags.length; count++) {
-      if (aTags[count].href !== '') {
-        aTags[count].onclick = function () {
-          const now = new URL(window.location.href).host
-          const next = new URL(aTags[count].href).host
-          let to = aTags[count].href
-          if (now === next) {
-            const next = new URL(aTags[count].href)
-            to = next.pathname + next.hash + next.search
-          }
-          vues.a(to)
-          event.preventDefault()
-          return false
-        }
-      }
-    }
 
     //タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
     const minimumDistance = 10

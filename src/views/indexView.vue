@@ -22,6 +22,9 @@
 </template>
 
 <script>
+/**
+ * ページ推移ごとにmountedを実行する必要があるため、どのviewsでも読み込むこと
+ */
 import mixins from '@/functions/mixins'
 import webpush from '@/webpush'
 
