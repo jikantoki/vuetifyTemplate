@@ -201,7 +201,7 @@ body {
   }
   hr {
     margin: 8px auto;
-    width: 95%;
+    width: 98%;
     align-items: center;
     border: 1px solid;
     opacity: 0.3;
