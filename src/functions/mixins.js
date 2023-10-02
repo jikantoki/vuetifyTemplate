@@ -21,7 +21,6 @@ export default {
   mounted() {
     const isAllow = localStorage.cookieAllowed === 'true'
     this.cookieAllowed = isAllow
-    console.log('weioewiji')
     const vues = this
     const aTags = document.querySelectorAll('a')
     for (let count = 0; count < aTags.length; count++) {
