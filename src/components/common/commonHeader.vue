@@ -206,7 +206,11 @@ export default {
         }
         return 3
       } else {
-        router.back()
+        if (referrer.host === now.host && !referrer.path) {
+          router.push('/')
+        } else {
+          router.back()
+        }
         return 0
       }
     },
