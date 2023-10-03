@@ -147,6 +147,9 @@ body {
       width: 100%;
     }
   }
+  .text-h0 {
+    font-size: 4em !important;
+  }
   .text-h1 {
     font-size: 3em !important;
   }
@@ -170,6 +173,14 @@ body {
   .text-small {
     font-size: 1em !important;
   }
+  .text-h0,
+  .text-h1,
+  .text-h2,
+  .text-h3 {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .text-h0,
   .text-h1,
   .text-h2,
   .text-h3,
@@ -192,6 +203,7 @@ body {
     flex-direction: column;
     padding: 8px 16px;
     border-radius: var(--border-radius);
+    overflow: hidden;
   }
   .wrap {
     display: flex;
@@ -227,6 +239,30 @@ body {
     display: inherit;
     @include mq('smartPhone') {
       display: none;
+    }
+  }
+  .big-img {
+    max-height: 300px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .img-wrap {
+    position: relative;
+    background-color: #000000;
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      margin: 0;
+      padding: 0;
+      color: white;
+      white-space: nowrap;
+    }
+    img {
+      opacity: 0.7;
     }
   }
 }

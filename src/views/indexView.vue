@@ -26,6 +26,9 @@
     .text-h2 画像だって表示可能
     hr
     p このコンポーネントを使えば、エモい感じで画像を簡単に表示できます
+    .img-wrap.my-4
+      img.big-img(:src="require('@/assets/img001.jpg')")
+      p.text-h0 テキストを入力
 .wrap
   v-card.content(elevation="4")
     .text-h2 マークダウンぽいやつもお手の物
