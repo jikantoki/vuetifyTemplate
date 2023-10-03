@@ -14,8 +14,8 @@ v-app.wrap100vh(ontouchstart="" style="min-height: 100vh!important;width:100vw")
 <script>
 import PackageJson from '/package.json'
 import Functions from '@/functions/Functions'
-import commonHeader from '@/components/common/commonHeader.vue'
-import commonFooter from '@/components/common/commonFooter.vue'
+import commonHeader from '@/components/common/commonHeader'
+import commonFooter from '@/components/common/commonFooter'
 import commonCookieGetPermission from '@/components/common/commonCookieGetPermission'
 import mixins from '@/functions/mixins'
 import webpush from '@/webpush'
@@ -116,6 +116,12 @@ body {
   font-size: 16px;
   --color-allow: #cceeff;
   --color-error: #ffcccc;
+  /** アプリの色 */
+  --accent-color: #00bbee;
+  /** アプリの色に合わせた文字色 */
+  --accent-text-color: #ffffff;
+  /** デフォルトのボーダー角の大きさ */
+  --border-radius: 16px;
 }
 * {
   user-select: none;
@@ -174,6 +180,9 @@ body {
     margin-top: 0.2em;
     margin-bottom: 0.2em;
   }
+  .v-btn {
+    text-transform: none;
+  }
   button {
     margin: 0.5em;
   }
@@ -182,7 +191,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 8px 16px;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
   }
   .wrap {
     display: flex;
@@ -205,6 +214,20 @@ body {
     align-items: center;
     border: 1px solid;
     opacity: 0.3;
+  }
+  /** モバイル用表示 */
+  .is-mobile {
+    display: none;
+    @include mq('smartPhone') {
+      display: inherit;
+    }
+  }
+  /** デスクトップ用表示 */
+  .is-not-mobile {
+    display: inherit;
+    @include mq('smartPhone') {
+      display: none;
+    }
   }
 }
 </style>

@@ -11,6 +11,7 @@
       v-btn(@click="pushForMe()") 通知送信テスト
       v-btn(@click="download('/download/vuetifyTemplate.apk','vuetifyTemplate.apk')") Download APK
       v-btn(@click="a('https://github.com/jikantoki/vuetifytemplate')") Github
+      v-btn(@click="pop()") ポップアップ
     .input-area
       v-text-field.my-4(label="送りたい通知内容を入力" v-model="notificationText")
 .wrap
@@ -30,6 +31,7 @@
     .text-h2 マークダウンぽいやつもお手の物
     hr
     p ノーマルテキスト
+componentPopup(ref="componentPopup")
 </template>
 
 <script>
@@ -38,8 +40,12 @@
  */
 import mixins from '@/functions/mixins'
 import webpush from '@/webpush'
+import componentPopup from '@/components/componentPopup'
 
 export default {
+  components: {
+    componentPopup: componentPopup
+  },
   mixins: [mixins],
   data() {
     return {
@@ -49,7 +55,7 @@ export default {
   },
   mounted() {},
   methods: {
-    getRequest: function () {
+    getRequest() {
       this.astatus = 'wait...'
       webpush
         .get(true)
@@ -61,7 +67,7 @@ export default {
           this.astatus = e
         })
     },
-    pushForMe: async function () {
+    async pushForMe() {
       const keys = await webpush.get()
       console.log(keys)
       if (!keys) {
@@ -80,6 +86,18 @@ export default {
           console.log(e)
         })
       return true
+    },
+    pop() {
+      console.log(this.$refs.componentPopup)
+      return this.$refs.componentPopup.pop(
+        'テスト表示',
+        'これはポップアップのサンプルです',
+        [
+          { text: 'OK', return: 0 },
+          { text: 'NG', return: 1 },
+          { text: 'Cancel', return: 2 }
+        ]
+      )
     }
   }
 }
