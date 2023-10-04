@@ -7,7 +7,7 @@ v-app.wrap100vh(ontouchstart="" style="min-height: 100vh!important;width:100vw")
       router-view
       common-cookie-get-permission
       popup(ref="componentPopup")
-    v-footer
+    v-footer.pa-16#footer
       common-footer
 .right-space(style="min-height: 100vh")
 </template>
@@ -275,6 +275,14 @@ body {
     }
     img {
       opacity: 0.7;
+    }
+  }
+  #main {
+    position: relative;
+    #footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
     }
   }
 }
