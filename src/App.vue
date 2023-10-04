@@ -244,12 +244,12 @@ body {
   .is-mobile {
     display: none;
     @include mq('smartPhone') {
-      display: inherit;
+      display: initial;
     }
   }
   /** デスクトップ用表示 */
   .is-not-mobile {
-    display: inherit;
+    display: initial;
     @include mq('smartPhone') {
       display: none;
     }
@@ -258,12 +258,12 @@ body {
   .is-pwa {
     display: none;
     @include mq('pwa') {
-      display: inherit;
+      display: initial;
     }
   }
   /** PWAじゃない場合に表示 */
   .is-not-pwa {
-    display: inherit;
+    display: initial;
     @include mq('pwa') {
       display: none;
     }
