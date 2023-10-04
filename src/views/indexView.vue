@@ -78,7 +78,6 @@ export default {
     },
     async pushForMe() {
       const keys = await webpush.get()
-      console.log(keys)
       if (!keys) {
         this.$refs.componentPopup.pop(
           '通知を送信できませんでした',

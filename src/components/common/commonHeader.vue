@@ -80,6 +80,7 @@ export default {
     } else {
       this.isRoot = false
     }
+    /*
     if (this.$vuetify.theme.global.name === 'light' && this.isDarkTheme) {
       this.$vuetify.theme.global.name = 'dark'
       MetaFunctions.setStatusColor('#222222')
@@ -89,6 +90,15 @@ export default {
       this.$vuetify.theme.global.name = 'light'
       MetaFunctions.setStatusColor('#FFFFFF')
       localStorage.theme = 'light'
+    }
+    */
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches == true) {
+      //dark mode
+      this.$vuetify.theme.global.name = 'dark'
+      MetaFunctions.setStatusColor('#222222')
+    } else {
+      this.$vuetify.theme.global.name = 'light'
+      MetaFunctions.setStatusColor('#FFFFFF')
     }
 
     const theme = localStorage.theme
