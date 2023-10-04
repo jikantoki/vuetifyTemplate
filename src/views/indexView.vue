@@ -58,23 +58,32 @@ export default {
   mounted() {},
   methods: {
     getRequest() {
-      const webPush = webpush
+      webpush
         .get(true)
         .then((e) => {
-          this.$refs.componentPopup.pop(
-            'ありがとうございます！',
-            'プッシュ通知の許可に成功しました。' + JSON.stringify(e),
-            [{ text: 'OK', return: 0 }]
-          )
+          if (e) {
+            this.$refs.componentPopup.pop(
+              'ありがとうございます！',
+              'プッシュ通知の許可に成功しました。' + JSON.stringify(e),
+              [{ text: 'OK', return: 0 }]
+            )
+          } else {
+            if (e === undefined) {
+              this.$refs.componentPopup.pop(
+                'リクエスト失敗',
+                'ブラウザによって通知へのリクエストが拒否されています。',
+                [{ text: 'OK', return: 0 }]
+              )
+            } else {
+              this.$refs.componentPopup.pop(
+                'リクエスト失敗',
+                'プッシュ通知の許可は、ブラウザから行う必要があります。',
+                [{ text: 'OK', return: 0 }]
+              )
+            }
+          }
         })
         .catch(() => {})
-      if (webPush === null) {
-        this.$refs.componentPopup.pop(
-          'リクエスト失敗',
-          'プッシュ通知の許可は、ブラウザから行う必要があります。',
-          [{ text: 'OK', return: 0 }]
-        )
-      }
     },
     async pushForMe() {
       const keys = await webpush.get()

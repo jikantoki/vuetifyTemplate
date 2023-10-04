@@ -53,6 +53,13 @@ export default {
   /**
    * ## プッシュ通知の許可が出ているか確認し、許可ならrequestに必要な鍵を返す
    * 要async / await
+   *
+   * 結果は.thenで見れる（エラーもthenに入る）
+   *
+   * ## 返り値リスト
+   * * Object 成功！
+   * * undefined 拒否
+   * * null PWAのため取得せず
    * @param {bool} listenFlag Trueの場合はリクエストを出す、Falseなら現在の権限に委ねる
    * @returns object
    */
@@ -120,12 +127,12 @@ const getRequest = async (listenFlag = false) => {
     } catch (e) {
       //エラーで取得不可
       console.warn(e)
-      return false
+      return undefined
     }
   } else {
     //Permission denied
     console.warn('Permission denied')
-    return false
+    return undefined
   }
 
   // 必要なトークンを変換して取得（これが重要！！！）
