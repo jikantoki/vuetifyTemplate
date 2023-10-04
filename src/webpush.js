@@ -82,7 +82,7 @@ function urlB64ToUint8Array(base64String) {
  * リクエストを取得する
  * サービスワーカー登録済みならsetを使わずgetRequestで十分
  * @param ListenFlag {string} Trueの場合はユーザーに尋ねる、falseの場合は権限に委ねる
- * @returns リクエスト
+ * @returns リクエスト、エラーはfalse、PWAによるリクエスト不可はnull
  */
 const getRequest = async (listenFlag = false) => {
   /**
@@ -100,6 +100,11 @@ const getRequest = async (listenFlag = false) => {
     try {
       //スマホで特定の環境だと止まる？？？
       if (permission !== 'granted') {
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+          // ここにPWA環境下でのみ実行するコードを記述
+          // PWAだとプッシュリクエストが出せないぽいのでreturn
+          return null
+        }
         Notification.requestPermission()
           .then((e) => {
             console.log(e)

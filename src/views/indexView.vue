@@ -28,13 +28,13 @@
     p このコンポーネントを使えば、エモい感じで画像を簡単に表示できます
     .img-wrap.my-4
       img.big-img(:src="require('@/assets/img001.jpg')")
-      p.text-h0 テキストを入力
+      p.text-h1 テキストを入力
 .wrap
   v-card.content(elevation="4")
     .text-h2 マークダウンぽいやつもお手の物
     hr
     p ノーマルテキスト
-componentPopup(ref="componentPopup")
+popup(ref="componentPopup")
 </template>
 
 <script>
@@ -47,33 +47,44 @@ import componentPopup from '@/components/componentPopup'
 
 export default {
   components: {
-    componentPopup: componentPopup
+    popup: componentPopup
   },
   mixins: [mixins],
   data() {
     return {
-      astatus: '',
       notificationText: '通知テスト12345🤓'
     }
   },
   mounted() {},
   methods: {
     getRequest() {
-      this.astatus = 'wait...'
-      webpush
+      const webPush = webpush
         .get(true)
-        .then((e) => {
-          console.log(e)
-          this.astatus = e
+        .then(() => {
+          this.$refs.componentPopup.pop(
+            'ありがとうございます！',
+            'プッシュ通知の許可に成功しました。',
+            [{ text: 'OK', return: 0 }]
+          )
         })
-        .catch((e) => {
-          this.astatus = e
-        })
+        .catch(() => {})
+      if (webPush === null) {
+        this.$refs.componentPopup.pop(
+          'リクエスト失敗',
+          'プッシュ通知の許可は、ブラウザから行う必要があります。',
+          [{ text: 'OK', return: 0 }]
+        )
+      }
     },
     async pushForMe() {
       const keys = await webpush.get()
       console.log(keys)
       if (!keys) {
+        this.$refs.componentPopup.pop(
+          '通知を送信できませんでした',
+          'プッシュ通知が許可されていないため、処理を完了できませんでした',
+          [{ text: 'OK', return: 0 }]
+        )
         return false
       }
       this.sendAjax('https://api.vuetemp.enoki.xyz/sendPushForMe.php', {

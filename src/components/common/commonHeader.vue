@@ -114,27 +114,36 @@ export default {
     this.nulling(endY)
 
     //移動を開始した座標を取得
-    window.addEventListener(
+    document.getElementById('main').addEventListener(
       'touchstart',
       (e) => {
-        startX = e.touches[0].pageX
-        startY = e.touches[0].pageY
+        startX = e.touches[0].clientX
+        startY = e.touches[0].clientY
       },
       { passive: true }
     )
 
     //移動した座標を取得
-    window.addEventListener(
+    document.getElementById('main').addEventListener(
       'touchmove',
       (e) => {
-        endX = e.changedTouches[0].pageX
-        endY = e.changedTouches[0].pageY
+        endX = e.changedTouches[0].clientX
+        endY = e.changedTouches[0].clientY
       },
       { passive: true }
     )
 
     //移動距離から左右or上下の処理を実行
-    window.addEventListener('touchend', () => {
+    document.getElementById('main').addEventListener('touchend', (e) => {
+      //触っているクラスに.dont-swipeが含まれていたらリジェクト
+      const classes = e.target.className.split(' ')
+      if (classes) {
+        for (const className of classes) {
+          if (className === 'dont-swipe') {
+            return false
+          }
+        }
+      }
       // スワイプ終了時にx軸とy軸の移動量を取得
       // 左スワイプに対応するためMath.abs()で+に変換
       const distanceX = this.unsigned(endX - startX)

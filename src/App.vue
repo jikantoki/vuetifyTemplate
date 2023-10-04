@@ -2,12 +2,13 @@
 v-app.wrap100vh(ontouchstart="" style="min-height: 100vh!important;width:100vw")
   header
     common-header
-  v-main
+  v-main#main
     .center
       router-view
       common-cookie-get-permission
-  v-footer
-    common-footer
+      popup(ref="componentPopup")
+    v-footer
+      common-footer
 .right-space(style="min-height: 100vh")
 </template>
 
@@ -17,6 +18,7 @@ import Functions from '@/functions/Functions'
 import commonHeader from '@/components/common/commonHeader'
 import commonFooter from '@/components/common/commonFooter'
 import commonCookieGetPermission from '@/components/common/commonCookieGetPermission'
+import componentPopup from '@/components/componentPopup'
 import mixins from '@/functions/mixins'
 import webpush from '@/webpush'
 
@@ -31,7 +33,8 @@ export default {
   components: {
     commonHeader: commonHeader,
     commonFooter: commonFooter,
-    commonCookieGetPermission: commonCookieGetPermission
+    commonCookieGetPermission: commonCookieGetPermission,
+    popup: componentPopup
   },
   mixins: [mixins],
   /**

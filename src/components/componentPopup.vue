@@ -1,9 +1,11 @@
 <template lang="pug">
-.wrap(v-if="isShow")
-  v-card.pa-4.pop(elevation="4")
-    .text-h6 {{ title }}
-    p.my-4 {{ message }}
-    v-btn(@click="isShow=false" v-for="action,key in actions" v-bind:class="[key === 0 ? 'first' : 'other']") {{ action.text }}
+//.dont-swipeを付けないとバグる
+.wrap.pop-wrap.dont-swipe(v-if="isShow")
+  v-card.pa-4.pop.dont-swipe(elevation="4")
+    .text-h6.dont-swipe {{ title }}
+    p.my-4.dont-swipe {{ message }}
+    .actions
+      v-btn.pop-btns.dont-swipe(v-for="action,key in actions" @click="isShow=false;popClick(key)" v-bind:class="[key === 0 ? 'first' : 'other']") {{ action.text }}
 </template>
 <script>
 export default {
@@ -12,9 +14,11 @@ export default {
       isShow: false,
       title: '',
       message: '',
+      resolveButtonClick: null,
       actions: []
     }
   },
+  mounted() {},
   methods: {
     /**
      * ## ポップアップを表示
@@ -31,13 +35,23 @@ export default {
      * @param {string} message 表示したいメッセージ
      * @param {array} actions 配列の中にオブジェクトを入れる
      */
-    pop(title, message, actions) {
+    async pop(title, message, actions) {
       this.title = title
       this.message = message
       this.actions = actions
       this.isShow = true
-      console.log(this.message)
-      return 0
+      const result = await this.waitButtonClick()
+      return result
+    },
+    waitButtonClick() {
+      return new Promise((resolve) => {
+        this.resolveButtonClick = resolve
+      })
+    },
+    popClick(ret) {
+      if (this.resolveButtonClick !== null) {
+        this.resolveButtonClick(ret)
+      }
     }
   }
 }
@@ -51,15 +65,19 @@ export default {
   top: 0;
   left: 0;
   z-index: 9999;
-  background-color: rgba(100, 100, 100, 0.4);
+  background-color: rgba(100, 100, 100, 0.5);
   .pop {
     border-radius: var(--border-radius);
-    .v-btn {
-      font-weight: bold;
-      border-radius: 9999px;
-      &.first {
-        background-color: var(--accent-color);
-        color: var(--accent-text-color);
+    .actions {
+      display: flex;
+      flex-direction: row-reverse;
+      .v-btn {
+        font-weight: bold;
+        border-radius: 9999px;
+        &.first {
+          background-color: var(--accent-color);
+          color: var(--accent-text-color);
+        }
       }
     }
   }
