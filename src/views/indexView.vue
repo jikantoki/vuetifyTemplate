@@ -60,10 +60,10 @@ export default {
     getRequest() {
       const webPush = webpush
         .get(true)
-        .then(() => {
+        .then((e) => {
           this.$refs.componentPopup.pop(
             'ありがとうございます！',
-            'プッシュ通知の許可に成功しました。',
+            'プッシュ通知の許可に成功しました。' + JSON.stringify(e),
             [{ text: 'OK', return: 0 }]
           )
         })
