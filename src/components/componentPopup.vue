@@ -68,9 +68,11 @@ export default {
   background-color: rgba(100, 100, 100, 0.5);
   .pop {
     border-radius: var(--border-radius);
+    max-width: 80%;
     .actions {
       display: flex;
       flex-direction: row-reverse;
+      overflow-x: auto;
       .v-btn {
         font-weight: bold;
         border-radius: 9999px;
