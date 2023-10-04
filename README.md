@@ -97,6 +97,23 @@ define('WebPush_URL', 'プッシュしたいURL');
 define('WebPush_URL_dev', 'プッシュしたいURL（開発用）');
 ```
 
+#### PHPサーバー用の.htaccessの用意
+
+大体こんな感じで設定する
+
+```htaccess
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+RewriteRule ^$ vuetifyTemplate/php/ [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ vuetifyTemplate/php/$1 [L]
+</IfModule>
+Header append Access-Control-Allow-Origin: "*"
+
+```
+
 ### MySQLの用意
 
 後で書く

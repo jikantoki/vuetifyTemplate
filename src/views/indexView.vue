@@ -14,6 +14,7 @@
       v-btn(@click="pop()") ポップアップ
     .input-area
       v-text-field.my-4(label="送りたい通知内容を入力" v-model="notificationText")
+    .hgewao {{ $t('page.content') }}
 .wrap
   v-card.content(elevation="4")
     .text-h2 簡単で、美しい。
