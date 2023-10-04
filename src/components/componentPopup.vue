@@ -3,7 +3,7 @@
 .wrap.pop-wrap.dont-swipe(v-if="isShow")
   v-card.pa-4.pop.dont-swipe(elevation="4")
     .text-h6.dont-swipe {{ title }}
-    p.my-4.dont-swipe {{ message }}
+    p.pop-content.my-4.dont-swipe {{ message }}
     .actions
       v-btn.pop-btns.dont-swipe(v-for="action,key in actions" @click="isShow=false;popClick(key)" v-bind:class="[key === 0 ? 'first' : 'other']") {{ action.text }}
 </template>
@@ -69,6 +69,9 @@ export default {
   .pop {
     border-radius: var(--border-radius);
     max-width: 80%;
+    .pop-content {
+      white-space: pre-line;
+    }
     .actions {
       display: flex;
       flex-direction: row-reverse;

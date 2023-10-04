@@ -64,7 +64,7 @@ export default {
           if (e) {
             this.$refs.componentPopup.pop(
               'ありがとうございます！',
-              'プッシュ通知の許可に成功しました。' + JSON.stringify(e),
+              'プッシュ通知の許可に成功しました。',
               [{ text: 'OK', return: 0 }]
             )
           } else {
@@ -77,7 +77,7 @@ export default {
             } else {
               this.$refs.componentPopup.pop(
                 'リクエスト失敗',
-                'プッシュ通知の許可は、ブラウザから行う必要があります。',
+                `プッシュ通知の許可は、ブラウザから行う必要があります。\nこの端末のブラウザで https://${location.host} にアクセスしてください。`,
                 [{ text: 'OK', return: 0 }]
               )
             }
