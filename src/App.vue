@@ -97,7 +97,8 @@ export default {
 <style lang="scss">
 $breakpoints: (
   'smartPhone': 'screen and (max-width:900px)',
-  'tablet': 'screen and (max-width:1400px)'
+  'tablet': 'screen and (max-width:1400px)',
+  'pwa': 'display-mode: standalone'
 ) !default;
 
 /* フォント設定 */
@@ -250,6 +251,20 @@ body {
   .is-not-mobile {
     display: inherit;
     @include mq('smartPhone') {
+      display: none;
+    }
+  }
+  /** モバイル用表示 */
+  .is-pwa {
+    display: none;
+    @include mq('pwa') {
+      display: inherit;
+    }
+  }
+  /** PWAじゃない場合に表示 */
+  .is-not-pwa {
+    display: inherit;
+    @include mq('pwa') {
       display: none;
     }
   }
