@@ -102,6 +102,7 @@ define('WebPush_URL_dev', 'プッシュしたいURL（開発用）');
 大体こんな感じで設定する
 
 ```htaccess
+#トップページを/vuetifyTemplate/php にする
 <IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteBase /
@@ -110,6 +111,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ vuetifyTemplate/php/$1 [L]
 </IfModule>
+# 外部からのAPIへのアクセスを許可
 Header append Access-Control-Allow-Origin: "*"
 
 ```

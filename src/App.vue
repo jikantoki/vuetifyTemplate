@@ -194,6 +194,12 @@ body {
     margin-top: 0.2em;
     margin-bottom: 0.2em;
   }
+  .allow-select {
+    user-select: auto;
+  }
+  .allow-select-all {
+    user-select: all;
+  }
   .v-btn {
     text-transform: none;
   }
