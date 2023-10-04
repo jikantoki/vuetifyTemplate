@@ -77,7 +77,7 @@ export default {
             } else {
               this.$refs.componentPopup.pop(
                 'リクエスト失敗',
-                `プッシュ通知の許可は、ブラウザから行う必要があります。\nこの端末で <span class="allow-select-all">https://${location.host}</span> にアクセスしてください。`,
+                `プッシュ通知の許可は、ブラウザから行う必要があります。\nこの端末で <span class="allow-select-all underline">https://${location.host}</span> にアクセスしてください。`,
                 [{ text: 'OK', return: 0 }]
               )
             }

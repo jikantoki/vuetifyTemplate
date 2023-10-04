@@ -200,6 +200,9 @@ body {
   .allow-select-all {
     user-select: all;
   }
+  .underline {
+    text-decoration: underline;
+  }
   .v-btn {
     text-transform: none;
   }
