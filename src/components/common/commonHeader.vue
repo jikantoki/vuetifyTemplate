@@ -102,9 +102,11 @@ export default {
       //dark mode
       this.$vuetify.theme.global.name = 'dark'
       MetaFunctions.setStatusColor('#222222')
+      this.isDarkTheme = true
     } else {
       this.$vuetify.theme.global.name = 'light'
       MetaFunctions.setStatusColor('#FFFFFF')
+      this.isDarkTheme = false
     }
 
     const theme = localStorage.theme

@@ -25,12 +25,10 @@ if (
   $_GET['apitoken'] === '' ||
   $_GET['apipassword'] === ''
 ) {
-  echo 'GET要素が足りん（怒）';
+  echo '空白あるよ（怒）';
   exit;
 }
 $isAPI = authAPI($_GET['apiid'], $_GET['apitoken'], $_GET['apipassword']);
-var_dump($isAPI);
-echo 'GETあるよ（笑）';
 
 if ($isAPI) {
   $response = makeAccount($_GET['username'], $_GET['password'], $_GET['mailaddress']);

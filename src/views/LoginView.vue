@@ -53,6 +53,7 @@ export default {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
+    max-width: 32em;
   }
 }
 .btns {
