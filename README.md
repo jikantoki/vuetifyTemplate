@@ -72,6 +72,10 @@ echo 'Vercelとかでデプロイしたらそのまま動く'
 ```env
 VUE_APP_WebPush_PublicKey=パブリックキーをコピー
 VUE_APP_WebPush_PrivateKey=プライベートキーをコピー
+
+VUE_APP_API_ID=default
+VUE_APP_API_TOKEN=後のPHPで作成するアクセストークン
+VUE_APP_API_ACCESSKEY=後のPHPで作成するアクセスキー
 ```
 
 #### それ以外（Vercelデプロイ等）
