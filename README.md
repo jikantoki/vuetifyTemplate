@@ -134,8 +134,9 @@ Header append Access-Control-Allow-Origin: "*"
 #### デフォルトAPIトークンのリセット方法
 
 1. MySQLのapi_listテーブルのsecretId='default'を削除
-2. 初回登録と同じ感じでやる
-3. データベースに再度defaultが追加されていることを確認
+2. api_listForViewのsecretId='default'も同様に削除
+3. 初回登録と同じ感じでやる
+4. データベースに再度defaultが追加されていることを確認
 
 ## コンソール側で初期化
 
