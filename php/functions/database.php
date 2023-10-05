@@ -242,19 +242,28 @@ function SQLjoin($baseTable, $joinTable, $baseKey, $joinKey, $where = null)
 
 //ここから先はWebサイト固有の機能
 
-/** アカウント作成 */
+/**
+ * ## アカウント作成
+ * @param [string] $userId ユーザー名
+ * @param [string] $password パスワード
+ * @param [string] $mailAddress メアド
+ * @return string 既にアカウントがある場合はAlready、問題なく作れたら0
+ */
 function makeAccount($userId, $password, $mailAddress)
 {
+  $already = SQLfind('user_list', 'userId', $userId);
+  if ($already) {
+    //既にアカウントがある
+    return 'Already';
+  }
   /** 未使用なランダムID */
   $secretId = SQLmakeRandomId('user_list', 'secretId');
-  /** ユーザーが自由に選べるID */
-  $userId = $_GET['username'];
   /** 現在のunixtime */
   $createdAt = time();
   /** アカウントステータス:未認証 */
   $status = 'uncertified';
   /** パスワード */
-  $password = password_hash($_GET['password'], PASSWORD_DEFAULT);
+  $password = password_hash($password, PASSWORD_DEFAULT);
   /** メールアドレス */
   $mail = $mailAddress;
 
@@ -282,4 +291,5 @@ function makeAccount($userId, $password, $mailAddress)
     'secretId' => $secretId,
     'mailAddress' => $mail
   ]);
+  return 0;
 }
