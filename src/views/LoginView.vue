@@ -7,7 +7,7 @@
       v-text-field(v-model="userName" label="ID" prepend-inner-icon="mdi-account-outline" required clearable)
       v-text-field(v-model="password" label="Password" prepend-inner-icon="mdi-lock-outline" :type="showPassword ? 'text' : 'password'" :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showPassword = !showPassword" required)
       .btns
-        v-btn.round.submit(@click="login") Login
+        v-btn.round.submit(@click="login" :disabled="!userName || !password") Login
         v-btn.round(@click="a('/registar')") Registar Account
 </template>
 
@@ -73,5 +73,8 @@ img {
 }
 .form-p {
   text-align: center;
+}
+.v-btn:disabled {
+  opacity: 0.7;
 }
 </style>

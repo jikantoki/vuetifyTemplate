@@ -18,6 +18,18 @@ const routes = [
     }
   },
   {
+    path: '/index',
+    redirect: '/'
+  },
+  {
+    path: '/index.html',
+    redirect: '/'
+  },
+  {
+    path: '/index.php',
+    redirect: '/'
+  },
+  {
     path: '/vuetify',
     component: HomeView,
     meta: {

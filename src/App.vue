@@ -120,6 +120,7 @@ body {
   font-size: 16px;
   --color-allow: #cceeff;
   --color-error: #ffcccc;
+  --color-error: #cc2222;
   /** アプリの色 */
   --accent-color: #00bbee;
   /** アプリの色に合わせた文字色 */
@@ -299,6 +300,12 @@ body {
       bottom: 0;
       width: 100%;
     }
+  }
+  .relative {
+    position: relative;
+  }
+  .absolute {
+    position: absolute;
   }
 }
 </style>

@@ -4,13 +4,17 @@
     img.ma-8(:src="require('@/assets/logo.png')")
     p.form-p.text-h6 アカウント新規登録
     v-container
-      v-text-field(v-model="userName" name="id" label="ID" prepend-inner-icon="mdi-account-outline" required clearable)
-      v-text-field(v-model="mailAddress" name="mail" label="Mail Address" prepend-inner-icon="mdi-email-outline" required clearable)
-      v-text-field(v-model="password" name="password" label="Password" prepend-inner-icon="mdi-lock-outline" :type="showPassword ? 'text' : 'password'" :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showPassword = !showPassword" required)
-      v-text-field(v-model="confirmPassword" name="confirmPassword" label="Confirm Password" prepend-inner-icon="mdi-lock-outline" :type="showConfirmPassword ? 'text' : 'password'" :append-inner-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showConfirmPassword = !showConfirmPassword" required)
-      p(v-if="invalidPassword") パスワードが正しくありません
+      p.error.pa-4.mb-4.relative(v-if="errorMessage")
+        v-icon mdi-alert-circle-outline
+        p.px-4 {{ errorMessage }}
+        v-icon.v-ripple.absolute.close-error(v-ripple @click="errorMessage=false") mdi-close-circle-outline
+      v-text-field(v-model="userName" name="id" label="ID" counter="32" prepend-inner-icon="mdi-account-outline" :rules="[rules.required]" hint="3～32文字、半角英数字アンダーバーのみ" clearable)
+      v-text-field(v-model="mailAddress" name="mail" label="Mail Address" prepend-inner-icon="mdi-email-outline" type="email" :rules="[rules.required]" clearable)
+      v-text-field(v-model="password" name="password" label="Password" prepend-inner-icon="mdi-lock-outline" :type="showPassword ? 'text' : 'password'" :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showPassword = !showPassword" :rules="[rules.required]")
+      v-text-field(v-model="confirmPassword" name="confirmPassword" label="Confirm Password" prepend-inner-icon="mdi-lock-outline" :type="showConfirmPassword ? 'text' : 'password'" :append-inner-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showConfirmPassword = !showConfirmPassword" :rules="[rules.required]")
+      v-checkbox(v-model="agreement" label="利用規約に同意します")
       .btns
-        v-btn.round.submit(@click="registar") Registar
+        v-btn.round.submit(@click="registar" :disabled="!userName || !mailAddress || !password || !confirmPassword") Registar
         v-btn.round(@click="a('/login')") I have a account already
 </template>
 
@@ -28,12 +32,28 @@ export default {
       confirmPassword: '',
       showPassword: false,
       showConfirmPassword: false,
-      invalidPassword: false
+      agreement: false,
+      errorMessage: '',
+      rules: {
+        required: (value) => !!value || 'Field is required'
+      }
     }
   },
   watch: {
     password() {
-      this.invalidPassword = false
+      this.errorMessage = false
+    },
+    confirmPassword() {
+      this.errorMessage = false
+    },
+    userName() {
+      this.errorMessage = false
+    },
+    mailAddress() {
+      this.errorMessage = false
+    },
+    agreement() {
+      this.errorMessage = false
     }
   },
   mounted() {
@@ -50,8 +70,33 @@ export default {
   },
   methods: {
     registar() {
-      if (this.password !== this.confirmPassword) {
-        this.invalidPassword = true
+      if (
+        !this.userName ||
+        !this.mailAddress ||
+        !this.password ||
+        !this.confirmPassword
+      ) {
+        this.errorMessage = '入力されていない項目があります'
+        return false
+      }
+      if (
+        this.userName.length < 3 ||
+        this.userName.length > 32 ||
+        !this.userName.match(/^[0-9a-zA-z_]+$/)
+      ) {
+        this.errorMessage = 'IDが正しくありません'
+        return false
+      }
+      if (!this.mailAddress.match(/.+@.+\..+/)) {
+        this.errorMessage = 'メールアドレスが正しくありません'
+        return false
+      }
+      if (this.password !== this.confirmPassword || this.password.length < 3) {
+        this.errorMessage = 'パスワードが正しくありません'
+        return false
+      }
+      if (!this.agreement) {
+        this.errorMessage = '利用規約に同意してください'
         return false
       }
       this.sendAjax(process.env.VUE_APP_API_HOST + '/createAccount.php', {
@@ -65,8 +110,8 @@ export default {
         .then((e) => {
           console.log(e)
         })
-        .catch((e) => {
-          console.log(e)
+        .catch(() => {
+          this.errorMessage = 'ネットワークエラー'
         })
     }
   }
@@ -104,5 +149,18 @@ img {
 }
 .form-p {
   text-align: center;
+}
+.error {
+  background-color: var(--color-error);
+  color: white;
+  display: flex;
+  border-radius: 4px;
+}
+.v-ripple {
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.close-error {
+  right: 16px;
 }
 </style>
