@@ -109,16 +109,16 @@ export default {
         })
       return true
     },
-    pop() {
-      return this.$refs.componentPopup.pop(
-        'テスト表示',
-        'これはポップアップのサンプルです',
-        [
+    async pop() {
+      return await this.$refs.componentPopup
+        .pop('テスト表示', 'これはポップアップのサンプルです', [
           { text: 'OK', return: 0 },
           { text: 'NG', return: 1 },
           { text: 'Cancel', return: 2 }
-        ]
-      )
+        ])
+        .then((e) => {
+          console.log(e)
+        })
     }
   }
 }

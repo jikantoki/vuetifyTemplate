@@ -45,7 +45,12 @@ export default {
     },
     waitButtonClick() {
       return new Promise((resolve) => {
-        this.resolveButtonClick = resolve
+        const btns = document.querySelectorAll('.pop-btns')
+        for (btn of btns) {
+          btn.onclick = function () {
+            resolve(true)
+          }
+        }
       })
     },
     popClick(ret) {
