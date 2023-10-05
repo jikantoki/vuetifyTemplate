@@ -128,8 +128,46 @@ function SQLinsert($table, $array)
   }
   $keys = mb_substr($keys, 0, -1);
   $values = mb_substr($values, 0, -1);
-  echo 'insert into ' . $table . ' (' . $keys . ') values (' . $values . ')';
   return SQL('insert into ' . $table . ' (' . $keys . ') values (' . $values . ')');
+}
+
+/**
+ * ## テーブルの中から複数条件で検索
+ *
+ * ### $arrayの中身
+ * ```
+ * $array = [
+ *   [
+ *     'key' => '検索したいキー',
+ *     'value' => '検索したい文字列',
+ *     'func' => '=' //演算記号
+ *   ],
+ *   [
+ *     'key' => '検索したいキー',
+ *     'value' => '検索したい文字列',
+ *     'func' => '=' //演算記号
+ *   ]
+ * ]
+ * ```
+ *
+ * @param [string] $table 検索したいテーブル
+ * @param [array] $array 検索したい条件をまとめた配列
+ * @return object 結果
+ */
+function SQLfindSome($table, $array)
+{
+  $words = 'select * from ' . $table . ' where ';
+  foreach ($array as $obj) {
+    $key = $obj['key'];
+    $val = $obj['value'];
+    $func = $obj['func'];
+    if (is_string($val)) {
+      $val = '"' . $val . '"';
+    }
+    $words = $words . $key . $func . ' ' . $val . ' and';
+  }
+  $words = substr($words, 0, -4);
+  return SQL($words);
 }
 
 /**
