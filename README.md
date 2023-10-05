@@ -76,6 +76,8 @@ VUE_APP_WebPush_PrivateKey=プライベートキーをコピー
 VUE_APP_API_ID=default
 VUE_APP_API_TOKEN=後のPHPで作成するアクセストークン
 VUE_APP_API_ACCESSKEY=後のPHPで作成するアクセスキー
+
+VUE_APP_API_HOST=APIサーバーのホスト
 ```
 
 #### それ以外（Vercelデプロイ等）
