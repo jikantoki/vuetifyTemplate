@@ -95,7 +95,7 @@ export default {
         )
         return false
       }
-      this.sendAjax('https://api.vuetemp.enoki.xyz/sendPushForMe.php', {
+      this.sendAjax(process.env.VUE_APP_API_HOST + '/sendPushForMe.php', {
         endpoint: keys.endpoint,
         publickey: keys.publicKey,
         authtoken: keys.authToken,
@@ -110,7 +110,6 @@ export default {
       return true
     },
     pop() {
-      console.log(this.$refs.componentPopup)
       return this.$refs.componentPopup.pop(
         'テスト表示',
         'これはポップアップのサンプルです',
