@@ -4,12 +4,13 @@
     img.ma-8(:src="require('@/assets/logo.png')")
     p.form-p.text-h6 アカウント新規登録
     v-container
-      v-text-field(v-model="userName" label="ID" prepend-inner-icon="mdi-account-outline" required clearable)
-      v-text-field(v-model="mailAddress" label="Mail Address" prepend-inner-icon="mdi-email-outline" required clearable)
-      v-text-field(v-model="password" label="Password" prepend-inner-icon="mdi-lock-outline" :type="showPassword ? 'text' : 'password'" :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showPassword = !showPassword" required)
-      v-text-field(v-model="confirmPassword" label="Confirm Password" prepend-inner-icon="mdi-lock-outline" :type="showPassword ? 'text' : 'password'" :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showPassword = !showPassword" required)
+      v-text-field(v-model="userName" name="id" label="ID" prepend-inner-icon="mdi-account-outline" required clearable)
+      v-text-field(v-model="mailAddress" name="mail" label="Mail Address" prepend-inner-icon="mdi-email-outline" required clearable)
+      v-text-field(v-model="password" name="password" label="Password" prepend-inner-icon="mdi-lock-outline" :type="showPassword ? 'text' : 'password'" :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showPassword = !showPassword" required)
+      v-text-field(v-model="confirmPassword" name="confirmPassword" label="Confirm Password" prepend-inner-icon="mdi-lock-outline" :type="showConfirmPassword ? 'text' : 'password'" :append-inner-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append-inner="showConfirmPassword = !showConfirmPassword" required)
+      p(v-if="invalidPassword") パスワードが正しくありません
       .btns
-        v-btn.round.submit(@click="login") Registar
+        v-btn.round.submit(@click="registar") Registar
         v-btn.round(@click="a('/login')") I have a account already
 </template>
 
@@ -25,7 +26,14 @@ export default {
       mailAddress: '',
       password: '',
       confirmPassword: '',
-      showPassword: false
+      showPassword: false,
+      showConfirmPassword: false,
+      invalidPassword: false
+    }
+  },
+  watch: {
+    password() {
+      this.invalidPassword = false
     }
   },
   mounted() {
@@ -41,7 +49,26 @@ export default {
     }
   },
   methods: {
-    login() {}
+    registar() {
+      if (this.password !== this.confirmPassword) {
+        this.invalidPassword = true
+        return false
+      }
+      this.sendAjax(process.env.VUE_APP_API_HOST + '/createAccount.php', {
+        username: this.userName,
+        password: this.password,
+        mailaddress: this.mailAddress,
+        apiid: process.env.VUE_APP_API_ID,
+        apitoken: process.env.VUE_APP_API_TOKEN,
+        apipassword: process.env.VUE_APP_API_PASSWORD
+      })
+        .then((e) => {
+          console.log(e)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
   }
 }
 </script>
