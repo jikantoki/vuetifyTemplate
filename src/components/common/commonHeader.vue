@@ -9,6 +9,12 @@ v-app-bar
 v-navigation-drawer.pa-0(v-model="drawer" fixed temporary)
   v-list(nav dense)
     v-item-group(v-model="group" active-class="deep-purple-text text--accent-4")
+      a.header-list(:href="'/login'")
+        v-list-item.pa-4(link)
+          .v-item
+            v-icon mdi-account-outline
+            p.nav ログイン
+      v-divider(style="opacity:0.3")
       a.header-list(v-for="navigationItem in NavigationList" :href="navigationItem.url")
         v-list-item.pa-4(link)
           .v-item

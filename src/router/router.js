@@ -37,6 +37,22 @@ const routes = [
       import(/* webpackChunkName: "about" */ '@/views/AboutView.vue')
   },
   {
+    path: '/login',
+    meta: {
+      title: 'Login',
+      description: 'ログインページ'
+    },
+    component: () => import('@/views/LoginView.vue')
+  },
+  {
+    path: '/registar',
+    meta: {
+      title: 'Registar',
+      description: '新規登録ページ'
+    },
+    component: () => import('@/views/RegistarView.vue')
+  },
+  {
     path: '/:catchAll(.*)', //404
     component: () => import('@/views/error/errorNotFound.vue'),
     meta: {
