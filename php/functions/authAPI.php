@@ -1,7 +1,7 @@
 <?php
-require_once '../settings.php';
-require_once '../functions/functions.php';
-require_once '../functions/database.php';
+require_once DIR_ROOT . '/php/settings.php';
+require_once DIR_ROOT . '/php/functions/functions.php';
+require_once DIR_ROOT . '/php/functions/database.php';
 
 function authAPI($id, $token, $password)
 {
