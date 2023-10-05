@@ -201,3 +201,47 @@ function SQLjoin($baseTable, $joinTable, $baseKey, $joinKey, $where = null)
   }
   return SQL($sql);
 }
+
+//ここから先はWebサイト固有の機能
+
+/** アカウント作成 */
+function makeAccount($userId, $password, $mailAddress)
+{
+  /** 未使用なランダムID */
+  $secretId = SQLmakeRandomId('user_list', 'secretId');
+  /** ユーザーが自由に選べるID */
+  $userId = $_GET['username'];
+  /** 現在のunixtime */
+  $createdAt = time();
+  /** アカウントステータス:未認証 */
+  $status = 'uncertified';
+  /** パスワード */
+  $password = password_hash($_GET['password'], PASSWORD_DEFAULT);
+  /** メールアドレス */
+  $mail = $mailAddress;
+
+  $res = SQLinsert('user_list', [
+    'secretId' => $secretId,
+    'userId' => $userId,
+    'createdAt' => $createdAt,
+    'status' => $status
+  ]);
+
+  $res = SQLinsert('user_secret_list', [
+    'secretId' => $secretId,
+    'password' => $password,
+    'otp' => null
+  ]);
+
+  $res = SQLinsert('user_profile_list', [
+    'secretId' => $secretId,
+    'icon' => null,
+    'coverImg' => null,
+    'name' => null,
+    'message' => null
+  ]);
+  $res = SQLinsert('user_mail_list', [
+    'secretId' => $secretId,
+    'mailAddress' => $mail
+  ]);
+}
