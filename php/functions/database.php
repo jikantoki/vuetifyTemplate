@@ -167,6 +167,7 @@ function SQLfindSome($table, $array)
     $words = $words . $key . $func . ' ' . $val . ' and';
   }
   $words = substr($words, 0, -4);
+  var_dump($words);
   return SQL($words);
 }
 
