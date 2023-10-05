@@ -28,6 +28,18 @@ export default {
       showPassword: false
     }
   },
+  mounted() {
+    if (localStorage.userId) {
+      this.userName = localStorage.userId
+    }
+  },
+  unmounted() {
+    if (this.userName) {
+      localStorage.userId = this.userName
+    } else {
+      localStorage.userId = ''
+    }
+  },
   methods: {
     login() {}
   }
