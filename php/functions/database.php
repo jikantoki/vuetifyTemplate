@@ -164,10 +164,9 @@ function SQLfindSome($table, $array)
     if (is_string($val)) {
       $val = '"' . $val . '"';
     }
-    $words = $words . $key . $func . ' ' . $val . ' and';
+    $words = $words . $key . $func . ' ' . $val . ' and ';
   }
   $words = substr($words, 0, -4);
-  var_dump($words);
   return SQL($words);
 }
 
