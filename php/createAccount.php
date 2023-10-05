@@ -21,4 +21,13 @@ $isAPI = authAPI($_GET['apiid'], $_GET['apitoken'], $_GET['apipassword']);
 var_dump($isAPI);
 echo 'GETあるよ（笑）';
 
-makeAccount($_GET['username'], $_GET['password'], $_GET['mailaddress']);
+if ($isAPI) {
+  $response = makeAccount($_GET['username'], $_GET['password'], $_GET['mailaddress']);
+  if (!$response) {
+    //アカウント作れた
+    echo 'OK!';
+  } else {
+    //既に存在しているとか
+    echo 'NG';
+  }
+}
