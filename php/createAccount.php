@@ -17,6 +17,17 @@ if (
   echo 'GET要素が足りん（怒）';
   exit;
 }
+if (
+  $_GET['username'] === '' ||
+  $_GET['password'] === '' ||
+  $_GET['mailaddress'] === '' ||
+  $_GET['apiid'] === '' ||
+  $_GET['apitoken'] === '' ||
+  $_GET['apipassword'] === ''
+) {
+  echo 'GET要素が足りん（怒）';
+  exit;
+}
 $isAPI = authAPI($_GET['apiid'], $_GET['apitoken'], $_GET['apipassword']);
 var_dump($isAPI);
 echo 'GETあるよ（笑）';
