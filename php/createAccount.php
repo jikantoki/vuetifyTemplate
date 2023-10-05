@@ -6,7 +6,8 @@ require_once './functions/database.php';
 if (
   !isset($_GET['username']) ||
   !isset($_GET['password']) ||
-  !isset($_GET['mailaddress'])
+  !isset($_GET['mailaddress']) ||
+  !isset($_GET['password'])
 ) {
   echo 'GET要素が足りん（怒）';
   exit;
@@ -20,8 +21,25 @@ $userId = $_GET['username'];
 /** 現在のunixtime */
 $createdAt = time();
 /** アカウントステータス:未認証 */
-$status = 'unauthed';
+$status = 'uncertified';
+/** パスワード */
+$password = password_hash($_GET['password'], PASSWORD_DEFAULT);
+
 $res = SQLinsert('user_list', [
   'secretId' => $secretId,
   'userId' => $userId
+]);
+
+$res = SQLinsert('user_secret_list', [
+  'secretId' => $secretId,
+  'password' => $password,
+  'otp' => null
+]);
+
+$res = SQLinsert('user_profile_list', [
+  'secretId' => $secretId,
+  'icon' => null,
+  'coverImg' => null,
+  'name' => null,
+  'message' => null
 ]);
