@@ -4,6 +4,7 @@
 require_once './settings.php';
 require_once './functions/functions.php';
 require_once './functions/database.php';
+require_once './functions/authAPI.php';
 
 if (
   !isset($_GET['username']) ||

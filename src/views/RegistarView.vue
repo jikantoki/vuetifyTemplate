@@ -60,7 +60,7 @@ export default {
         mailaddress: this.mailAddress,
         apiid: process.env.VUE_APP_API_ID,
         apitoken: process.env.VUE_APP_API_TOKEN,
-        apipassword: process.env.VUE_APP_API_PASSWORD
+        apipassword: process.env.VUE_APP_API_ACCESSKEY
       })
         .then((e) => {
           console.log(e)
