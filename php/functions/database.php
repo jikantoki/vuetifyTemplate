@@ -151,7 +151,7 @@ function SQLfindEx($table, $key, $value, $func)
 }
 
 /**
- * テーブルの中の'key'列から検索値と完全一致するものを出す
+ * テーブルの中の'key'列から検索値'value'と完全一致するものを出す
  *
  * @param [string] $table 検索したいテーブル
  * @param [string] $key 検索したい列
@@ -168,7 +168,7 @@ function SQLfind($table, $key, $value)
  *
  * @param [type] $table 使いたいテーブル
  * @param [type] $key IDを登録する列
- * @return string
+ * @return string 未使用なID
  */
 function SQLmakeRandomId($table, $key)
 {

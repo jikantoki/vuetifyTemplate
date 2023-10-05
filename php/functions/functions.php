@@ -17,3 +17,8 @@ function dump($var)
   echo "\n";
   return 0;
 }
+
+function now()
+{
+  time();
+}
