@@ -79,25 +79,7 @@ export default {
       }
     }
   },
-  mounted() {
-    const now = new URL(window.location.href)
-    if (Functions.isRoot(now.pathname)) {
-      this.isRoot = true
-    } else {
-      this.isRoot = false
-    }
-    /*
-    if (this.$vuetify.theme.global.name === 'light' && this.isDarkTheme) {
-      this.$vuetify.theme.global.name = 'dark'
-      MetaFunctions.setStatusColor('#222222')
-      localStorage.theme = 'dark'
-    }
-    if (this.$vuetify.theme.global.name === 'dark' && !this.isDarktheme) {
-      this.$vuetify.theme.global.name = 'light'
-      MetaFunctions.setStatusColor('#FFFFFF')
-      localStorage.theme = 'light'
-    }
-    */
+  created() {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches == true) {
       //dark mode
       this.$vuetify.theme.global.name = 'dark'
@@ -107,6 +89,14 @@ export default {
       this.$vuetify.theme.global.name = 'light'
       MetaFunctions.setStatusColor('#FFFFFF')
       this.isDarkTheme = false
+    }
+  },
+  mounted() {
+    const now = new URL(window.location.href)
+    if (Functions.isRoot(now.pathname)) {
+      this.isRoot = true
+    } else {
+      this.isRoot = false
     }
 
     const theme = localStorage.theme
